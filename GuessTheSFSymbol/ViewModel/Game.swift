@@ -21,9 +21,10 @@ import GameKit
     @Published var numberOfRounds = 10
     
     @Published var round: Int = 0
+    @Published var roundIsFinished = false
     @Published var symbolsToGuess: [String] = []
     
-    /// Sample data init
+#warning("Remove this sample data init")
     init(withSampleData: Bool) {
         super.init()
         if withSampleData {
@@ -79,8 +80,10 @@ import GameKit
     
     /// Resets the game data to default
     func resetGame() {
-        opponents = []
         isPlayingGame = false
+        opponents = []
+        round = 0
+        roundIsFinished = false
         currentMatch = nil
     }
     
@@ -128,25 +131,24 @@ import GameKit
     }
     
     /// Send updated score to all opponents
-    func sendNewScore() {
+    func sendNewCorrectGuess(_ guess: CorrectGuess) {
         do {
             var gamePropertyList: [String: Any] = [:]
             
-            // Add the local player's tap count.
-            gamePropertyList["score"] = localPlayer?.score
+            // Add the local player's new correct guess
+            gamePropertyList["newCorrectGuess"] = guess
             
             let gameData = try PropertyListSerialization.data(fromPropertyList: gamePropertyList, format: .binary, options: 0)
             try currentMatch?.sendData(toAllPlayers: gameData, with: .reliable)
         } catch {
-            //Handle error sending new score
-            print("Error sending new score: \(error.localizedDescription)")
+            //Handle error sending new correct guess
+            print("Error sending new correct guess: \(error.localizedDescription)")
         }
     }
     
     /// Disconnects from the match and resets the game data
     func quitGame() {
         currentMatch?.disconnect()
-        isPlayingGame = false
         resetGame()
     }
 }

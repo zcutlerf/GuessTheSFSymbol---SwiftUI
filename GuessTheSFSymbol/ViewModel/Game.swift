@@ -116,6 +116,11 @@ import GameKit
         let correctAnswerCleaned = symbolsToGuess[round].filter({ !$0.isWhitespace && !$0.isPunctuation && !$0.isNewline }).lowercased()
         
         if guessCleaned == correctAnswerCleaned {
+            if !(localPlayer?.correctGuesses.contains(where: { $0.round == round }) ?? true) {
+                let newCorrectGuess = CorrectGuess(round: round, answer: symbolsToGuess[round])
+                localPlayer?.correctGuesses.append(newCorrectGuess)
+            }
+            
             return true
         }
         

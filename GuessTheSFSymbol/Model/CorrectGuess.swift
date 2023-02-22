@@ -9,5 +9,6 @@ import Foundation
 
 struct CorrectGuess {
     var date = Date()
-    var guess: String
+    var round: Int
+    var answer: String
 }

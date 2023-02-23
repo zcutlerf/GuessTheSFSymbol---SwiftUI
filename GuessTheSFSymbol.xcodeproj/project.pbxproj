@@ -19,9 +19,12 @@
 		5DE7768B29A69C660024B8E8 /* CorrectGuess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE7768A29A69C660024B8E8 /* CorrectGuess.swift */; };
 		5DE7768D29A69C6F0024B8E8 /* Symbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE7768C29A69C6F0024B8E8 /* Symbols.swift */; };
 		5DE7768F29A69C890024B8E8 /* SFSymbols.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5DE7768E29A69C890024B8E8 /* SFSymbols.txt */; };
+		5DE7769129A6B4440024B8E8 /* SimpleSymbols.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5DE7769029A6B4440024B8E8 /* SimpleSymbols.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5D8EA8E429A7B03300A4EDAC /* GuessTheSFSymbol.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GuessTheSFSymbol.entitlements; sourceTree = "<group>"; };
+		5D8EA8E529A7B4E400A4EDAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		5DE7766C29A69BB70024B8E8 /* GuessTheSFSymbol.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GuessTheSFSymbol.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DE7766F29A69BB70024B8E8 /* GuessTheSFSymbolApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessTheSFSymbolApp.swift; sourceTree = "<group>"; };
 		5DE7767129A69BB70024B8E8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -35,6 +38,7 @@
 		5DE7768A29A69C660024B8E8 /* CorrectGuess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorrectGuess.swift; sourceTree = "<group>"; };
 		5DE7768C29A69C6F0024B8E8 /* Symbols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Symbols.swift; sourceTree = "<group>"; };
 		5DE7768E29A69C890024B8E8 /* SFSymbols.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = SFSymbols.txt; sourceTree = "<group>"; };
+		5DE7769029A6B4440024B8E8 /* SimpleSymbols.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = SimpleSymbols.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +71,8 @@
 		5DE7766E29A69BB70024B8E8 /* GuessTheSFSymbol */ = {
 			isa = PBXGroup;
 			children = (
+				5D8EA8E529A7B4E400A4EDAC /* Info.plist */,
+				5D8EA8E429A7B03300A4EDAC /* GuessTheSFSymbol.entitlements */,
 				5DE7766F29A69BB70024B8E8 /* GuessTheSFSymbolApp.swift */,
 				5DE7767F29A69BEC0024B8E8 /* View */,
 				5DE7768229A69BFE0024B8E8 /* ViewModel */,
@@ -111,6 +117,7 @@
 				5DE7768A29A69C660024B8E8 /* CorrectGuess.swift */,
 				5DE7768C29A69C6F0024B8E8 /* Symbols.swift */,
 				5DE7768E29A69C890024B8E8 /* SFSymbols.txt */,
+				5DE7769029A6B4440024B8E8 /* SimpleSymbols.txt */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -175,6 +182,7 @@
 			files = (
 				5DE7767729A69BB80024B8E8 /* Preview Assets.xcassets in Resources */,
 				5DE7768F29A69C890024B8E8 /* SFSymbols.txt in Resources */,
+				5DE7769129A6B4440024B8E8 /* SimpleSymbols.txt in Resources */,
 				5DE7767429A69BB80024B8E8 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -320,14 +328,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = GuessTheSFSymbol/GuessTheSFSymbol.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GuessTheSFSymbol/Preview Content\"";
 				DEVELOPMENT_TEAM = 94AXJS8DQZ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = GuessTheSFSymbol/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = SFGuess;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -354,14 +363,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = GuessTheSFSymbol/GuessTheSFSymbol.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GuessTheSFSymbol/Preview Content\"";
 				DEVELOPMENT_TEAM = 94AXJS8DQZ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = GuessTheSFSymbol/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = SFGuess;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

@@ -1,0 +1,9 @@
+pencil
+folder
+eraser
+terminal
+book
+person
+basketball
+power
+globe

@@ -13,7 +13,9 @@ struct Symbols {
     var symbolNames: [String] = []
     
     private init() {
-        if let path = Bundle.main.path(forResource: "SFSymbols", ofType: "txt") {
+//        if let path = Bundle.main.path(forResource: "SFSymbols", ofType: "txt") {
+        #warning("Using simple symbols for testing")
+        if let path = Bundle.main.path(forResource: "SimpleSymbols", ofType: "txt") {
             do {
                 let data = try String(contentsOfFile: path, encoding: .utf8)
                 symbolNames = data.components(separatedBy: .newlines)

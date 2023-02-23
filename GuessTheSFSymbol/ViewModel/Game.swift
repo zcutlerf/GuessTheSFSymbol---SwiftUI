@@ -84,6 +84,7 @@ import GameKit
         opponents = []
         round = 0
         roundIsFinished = false
+        currentMatch?.delegate = nil
         currentMatch = nil
     }
     
@@ -114,7 +115,7 @@ import GameKit
     }
     
     /// Check if the guess is correct
-    func validateGuess(_ guess: String) -> Bool {
+    func validateGuess(_ guess: String) {
         let guessCleaned = guess.filter({ !$0.isWhitespace && !$0.isPunctuation && !$0.isNewline }).lowercased()
         let correctAnswerCleaned = symbolsToGuess[round].filter({ !$0.isWhitespace && !$0.isPunctuation && !$0.isNewline }).lowercased()
         
@@ -122,9 +123,24 @@ import GameKit
             if !(localPlayer?.correctGuesses.contains(where: { $0.round == round }) ?? true) {
                 let newCorrectGuess = CorrectGuess(round: round, answer: symbolsToGuess[round])
                 localPlayer?.correctGuesses.append(newCorrectGuess)
+                sendNewCorrectGuess(newCorrectGuess)
+                roundIsFinished = true
             }
-            
-            return true
+        }
+    }
+    
+    /// Check whether a player had a correct guess for this round
+    func playerGuessedCorrectly(_ id: UUID) -> Bool {
+        if let opponent = opponents.first(where: { $0.id == id }) {
+            if opponent.correctGuesses.contains(where: { $0.round == round }) {
+                return true
+            }
+        }
+        
+        if localPlayer?.id == id {
+            if localPlayer!.correctGuesses.contains(where: { $0.round == round }) {
+                return true
+            }
         }
         
         return false

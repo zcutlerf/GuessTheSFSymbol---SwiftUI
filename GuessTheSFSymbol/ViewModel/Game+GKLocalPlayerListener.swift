@@ -41,12 +41,13 @@ extension Game: GKMatchDelegate, GKLocalPlayerListener {
             if let gamePropertyList: [String: Any] =
                 try PropertyListSerialization.propertyList(from: data, format: nil) as? [String: Any] {
                 
-                // Restore the tapCount from the property list.
-                if let newGuesses = gamePropertyList["correctGuesses"] as? [CorrectGuess] {
+                // Restore the new correct guess from the property list
+                if let newCorrectGuess = gamePropertyList["newCorrectGuess"] as? CorrectGuess {
                     
                     //Find the index of the player we are talking about
                     if let index = opponents.firstIndex(where: { $0.gkPlayer.gamePlayerID == player.gamePlayerID }) {
-                        opponents[index].correctGuesses = newGuesses
+                        opponents[index].correctGuesses.append(newCorrectGuess)
+                        roundIsFinished = true
                     }
                 }
             }

@@ -11,7 +11,6 @@ struct GameplayView: View {
     @EnvironmentObject var game: Game
     
     @State private var guessText = ""
-    @State private var guessedCorrectly = false
     
     var body: some View {
         ScrollView {
@@ -23,6 +22,7 @@ struct GameplayView: View {
                                 .resizable()
                                 .scaledToFit()
                                 .frame(maxWidth: 50.0, maxHeight: 50.0)
+                                .clipShape(Circle())
                             
                             Text(game.localPlayer!.score.description)
                                 .font(.title3)
@@ -37,6 +37,7 @@ struct GameplayView: View {
                                 .resizable()
                                 .scaledToFit()
                                 .frame(maxWidth: 50.0, maxHeight: 50.0)
+                                .clipShape(Circle())
                             
                             Text(opponent.score.description)
                                 .font(.title3)
@@ -50,7 +51,7 @@ struct GameplayView: View {
                     Spacer()
                     
                     Button {
-                        advanceRound()
+                        //TODO: send skip message of some sort? Maybe CorrectGuess could become Submission, more general
                     } label: {
                         Text("Skip")
                             .font(.title2)
@@ -77,7 +78,7 @@ struct GameplayView: View {
                     .multilineTextAlignment(.center)
                 
                 HStack {
-                    if guessedCorrectly {
+                    if game.roundIsFinished {
                         Text(game.symbolsToGuess[game.round])
                             .font(.headline)
                             .padding(7)
@@ -95,21 +96,12 @@ struct GameplayView: View {
             }
             .padding()
             .onChange(of: guessText) { newValue in
-                if game.validateGuess(newValue) {
-                    guessedCorrectly = true
-                    
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                        advanceRound()
-                    }
-                }
+                game.validateGuess(newValue)
+            }
+            .onChange(of: game.round) { _ in
+                guessText = ""
             }
         }
-    }
-    
-    func advanceRound() {
-        game.round += 1
-        guessText = ""
-        guessedCorrectly = false
     }
 }
 

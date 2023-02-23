@@ -24,6 +24,7 @@ extension Game: GKMatchmakerViewControllerDelegate {
         }
         
         currentMatch = match
+        currentMatch?.delegate = self
         
         //Get list of symbols to guess this round
         symbolsToGuess = Symbols.shared.generateRoundSymbols(for: 10)

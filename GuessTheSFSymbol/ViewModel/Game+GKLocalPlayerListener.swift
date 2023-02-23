@@ -7,7 +7,8 @@
 
 import GameKit
 
-extension Game: GKMatchDelegate, GKLocalPlayerListener {
+// GKLocalPlayerListener and GKMatchDelegate
+extension Game {
     //Handle when the local player accepts an invite to a match
     func player(_ player: GKPlayer, didAccept invite: GKInvite) {
         // Present the view controller in the invitation state.

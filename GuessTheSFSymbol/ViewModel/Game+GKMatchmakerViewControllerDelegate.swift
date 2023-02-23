@@ -7,7 +7,8 @@
 
 import GameKit
 
-extension Game: GKMatchmakerViewControllerDelegate {
+// GKMatchmakerViewControllerDelegate
+extension Game {
     //Handle finding a match
     func matchmakerViewController(_ viewController: GKMatchmakerViewController, didFind match: GKMatch) {
         // Dismiss the view controller.

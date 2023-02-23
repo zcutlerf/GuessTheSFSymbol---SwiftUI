@@ -1,9 +1,10 @@
+ant
 pencil
 folder
-eraser
-terminal
-book
-person
-basketball
-power
-globe
+airplane
+tornado
+tortoise
+thermometer
+umbrella
+wrench
+hammer

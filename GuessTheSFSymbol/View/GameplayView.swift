@@ -9,6 +9,7 @@ import SwiftUI
 
 struct GameplayView: View {
     @EnvironmentObject var game: Game
+    @Environment(\.dismiss) var dismiss
     
     @State private var guessText = ""
     
@@ -48,6 +49,15 @@ struct GameplayView: View {
                 }
                 
                 HStack {
+                    Button(role: .destructive) {
+                        dismiss()
+                    } label: {
+                        Text("Quit")
+                            .font(.title2)
+                            .fontWeight(.semibold)
+                    }
+                    .buttonStyle(.bordered)
+                    
                     Spacer()
                     
                     Button {
@@ -67,7 +77,7 @@ struct GameplayView: View {
                     Image(systemName: game.symbolsToGuess[game.round])
                         .resizable()
                         .scaledToFit()
-                        .frame(height: 250.0)
+                        .frame(height: 180.0)
                 }
                 
                 Divider()

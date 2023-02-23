@@ -28,8 +28,11 @@ struct ContentView: View {
                 game.authenticateLocalPlayer()
             }
         }
-        .sheet(isPresented: $game.isPlayingGame) {
+        .fullScreenCover(isPresented: $game.isPlayingGame) {
             GameplayView()
+                .onDisappear {
+                    game.quitGame()
+                }
         }
     }
 }

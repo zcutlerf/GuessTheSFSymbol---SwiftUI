@@ -93,6 +93,7 @@ import GameKit
         let request = GKMatchRequest()
         request.minPlayers = 2
         request.maxPlayers = 4
+        request.inviteMessage = "\(localPlayer?.gkPlayer.displayName ?? "Unknown Player") wants to play SFGuess with you!"
         
         if let viewController = GKMatchmakerViewController(matchRequest: request) {
             viewController.matchmakerDelegate = self

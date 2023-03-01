@@ -10,29 +10,75 @@ import GameKit
 
 struct ContentView: View {
     @EnvironmentObject var game: Game
+    @State private var isPlayingSolo: Bool = false
+    
+    @State private var symbolPreview: String = "tortoise"
+    let timer = Timer.publish(every: 0.3, on: .main, in: .common).autoconnect()
     
     var body: some View {
-        VStack {
-            Button {
-                game.startGame()
-            } label: {
-                Text("Start Game")
-                    .font(.title)
-            }
-            .buttonStyle(.borderedProminent)
-            .disabled(!game.isAuthenticated)
-        }
-        .padding()
-        .onAppear {
-            if !GKLocalPlayer.local.isAuthenticated {
-                game.authenticateLocalPlayer()
-            }
-        }
-        .fullScreenCover(isPresented: $game.isPlayingGame) {
-            GameplayView()
-                .onDisappear {
-                    game.quitGame()
+        NavigationView {
+            VStack(spacing: 25.0) {
+                HStack(spacing: 20.0) {
+                    Image(systemName: "questionmark")
+                        .font(.title.weight(.bold))
+                        .foregroundColor(.accentColor)
+                    
+                    Image(systemName: symbolPreview)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 180.0, height: 100.0)
+                    
+                    Image(systemName: "questionmark")
+                        .font(.title.weight(.bold))
+                        .foregroundColor(.accentColor)
                 }
+                
+                Spacer()
+                
+                Button {
+                    //TODO: Show how to play screen
+                } label: {
+                    Text("How to Play")
+                        .font(.title)
+                }
+                .buttonStyle(.bordered)
+                
+                Button {
+                    isPlayingSolo.toggle()
+                } label: {
+                    Text("Single Player")
+                        .font(.title)
+                }
+                .buttonStyle(.borderedProminent)
+                
+                Button {
+                    game.startGame()
+                } label: {
+                    Text("Multi Player")
+                        .font(.title)
+                }
+                .buttonStyle(.borderedProminent)
+                .disabled(!game.isAuthenticated)
+            }
+            .padding()
+            .onAppear {
+                if !GKLocalPlayer.local.isAuthenticated {
+                    game.authenticateLocalPlayer()
+                }
+            }
+            .fullScreenCover(isPresented: $isPlayingSolo) {
+                SingleplayerView()
+            }
+            .fullScreenCover(isPresented: $game.isPlayingGame) {
+                MultiplayerView()
+                    .onDisappear {
+                        game.quitGame()
+                    }
+            }
+            .onReceive(timer, perform: { _ in
+                symbolPreview = Symbols.shared.randomSymbol()
+            })
+            .navigationTitle("SFGuess")
         }
     }
 }

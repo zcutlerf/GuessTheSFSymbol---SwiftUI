@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct GameplayView: View {
+struct MultiplayerView: View {
     @EnvironmentObject var game: Game
     @Environment(\.dismiss) var dismiss
     
@@ -74,34 +74,7 @@ struct GameplayView: View {
                 Divider()
                 
                 if game.symbolsToGuess.indices.contains(game.round) {
-                    Image(systemName: game.symbolsToGuess[game.round])
-                        .resizable()
-                        .scaledToFit()
-                        .frame(height: 180.0)
-                }
-                
-                Divider()
-                
-                Text("What is this SF Symbol?")
-                    .font(.title2)
-                    .fontWeight(.medium)
-                    .multilineTextAlignment(.center)
-                
-                HStack {
-                    if game.roundIsFinished {
-                        Text(game.symbolsToGuess[game.round])
-                            .font(.headline)
-                            .padding(7)
-                        
-                        Spacer()
-                        
-                        Image(systemName: "checkmark.seal.fill")
-                            .foregroundColor(.green)
-                            .imageScale(.large)
-                    } else {
-                        TextField("Guess", text: $guessText)
-                            .textFieldStyle(.roundedBorder)
-                    }
+                    SymbolToGuessView(symbolName: game.symbolsToGuess[game.round], guessText: $guessText, guessedCorrectly: game.roundIsFinished)
                 }
             }
             .padding()
@@ -111,13 +84,22 @@ struct GameplayView: View {
             .onChange(of: game.round) { _ in
                 guessText = ""
             }
+            .onChange(of: game.roundIsFinished) { newValue in
+                if newValue == true {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                        //Go to next round
+                        game.round += 1
+                        game.roundIsFinished = false
+                    }
+                }
+            }
         }
     }
 }
 
-struct GameplayView_Previews: PreviewProvider {
+struct MultiplayerView_Previews: PreviewProvider {
     static var previews: some View {
-        GameplayView()
+        MultiplayerView()
             .environmentObject(Game(withSampleData: true))
     }
 }

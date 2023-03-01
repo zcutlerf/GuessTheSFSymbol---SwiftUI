@@ -36,7 +36,7 @@ struct Symbols {
         return selectedSymbols
     }
     
-    private func randomSymbol() -> String {
+    func randomSymbol() -> String {
         var symbol = self.symbolNames.randomElement() ?? "person"
         symbol.removeAll(where: { $0.isWhitespace || $0.isNewline })
         return symbol

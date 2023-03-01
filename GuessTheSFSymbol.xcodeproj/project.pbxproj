@@ -7,11 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5D8EA8E729A7EC2900A4EDAC /* SingleplayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8EA8E629A7EC2900A4EDAC /* SingleplayerView.swift */; };
+		5D8EA8E929A7F10600A4EDAC /* SymbolToGuessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8EA8E829A7F10600A4EDAC /* SymbolToGuessView.swift */; };
 		5DE7767029A69BB70024B8E8 /* GuessTheSFSymbolApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE7766F29A69BB70024B8E8 /* GuessTheSFSymbolApp.swift */; };
 		5DE7767229A69BB70024B8E8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE7767129A69BB70024B8E8 /* ContentView.swift */; };
 		5DE7767429A69BB80024B8E8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5DE7767329A69BB80024B8E8 /* Assets.xcassets */; };
 		5DE7767729A69BB80024B8E8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5DE7767629A69BB80024B8E8 /* Preview Assets.xcassets */; };
-		5DE7767E29A69BE10024B8E8 /* GameplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE7767D29A69BE10024B8E8 /* GameplayView.swift */; };
+		5DE7767E29A69BE10024B8E8 /* MultiplayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE7767D29A69BE10024B8E8 /* MultiplayerView.swift */; };
 		5DE7768129A69BFA0024B8E8 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE7768029A69BFA0024B8E8 /* Game.swift */; };
 		5DE7768429A69C170024B8E8 /* Game+GKLocalPlayerListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE7768329A69C170024B8E8 /* Game+GKLocalPlayerListener.swift */; };
 		5DE7768629A69C230024B8E8 /* Game+GKMatchmakerViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE7768529A69C230024B8E8 /* Game+GKMatchmakerViewControllerDelegate.swift */; };
@@ -25,12 +27,14 @@
 /* Begin PBXFileReference section */
 		5D8EA8E429A7B03300A4EDAC /* GuessTheSFSymbol.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GuessTheSFSymbol.entitlements; sourceTree = "<group>"; };
 		5D8EA8E529A7B4E400A4EDAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		5D8EA8E629A7EC2900A4EDAC /* SingleplayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleplayerView.swift; sourceTree = "<group>"; };
+		5D8EA8E829A7F10600A4EDAC /* SymbolToGuessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolToGuessView.swift; sourceTree = "<group>"; };
 		5DE7766C29A69BB70024B8E8 /* GuessTheSFSymbol.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GuessTheSFSymbol.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DE7766F29A69BB70024B8E8 /* GuessTheSFSymbolApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessTheSFSymbolApp.swift; sourceTree = "<group>"; };
 		5DE7767129A69BB70024B8E8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		5DE7767329A69BB80024B8E8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5DE7767629A69BB80024B8E8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		5DE7767D29A69BE10024B8E8 /* GameplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameplayView.swift; sourceTree = "<group>"; };
+		5DE7767D29A69BE10024B8E8 /* MultiplayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiplayerView.swift; sourceTree = "<group>"; };
 		5DE7768029A69BFA0024B8E8 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		5DE7768329A69C170024B8E8 /* Game+GKLocalPlayerListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Game+GKLocalPlayerListener.swift"; sourceTree = "<group>"; };
 		5DE7768529A69C230024B8E8 /* Game+GKMatchmakerViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Game+GKMatchmakerViewControllerDelegate.swift"; sourceTree = "<group>"; };
@@ -95,7 +99,9 @@
 			isa = PBXGroup;
 			children = (
 				5DE7767129A69BB70024B8E8 /* ContentView.swift */,
-				5DE7767D29A69BE10024B8E8 /* GameplayView.swift */,
+				5D8EA8E629A7EC2900A4EDAC /* SingleplayerView.swift */,
+				5DE7767D29A69BE10024B8E8 /* MultiplayerView.swift */,
+				5D8EA8E829A7F10600A4EDAC /* SymbolToGuessView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -196,11 +202,13 @@
 			files = (
 				5DE7768D29A69C6F0024B8E8 /* Symbols.swift in Sources */,
 				5DE7768629A69C230024B8E8 /* Game+GKMatchmakerViewControllerDelegate.swift in Sources */,
-				5DE7767E29A69BE10024B8E8 /* GameplayView.swift in Sources */,
+				5D8EA8E929A7F10600A4EDAC /* SymbolToGuessView.swift in Sources */,
+				5DE7767E29A69BE10024B8E8 /* MultiplayerView.swift in Sources */,
 				5DE7767229A69BB70024B8E8 /* ContentView.swift in Sources */,
 				5DE7767029A69BB70024B8E8 /* GuessTheSFSymbolApp.swift in Sources */,
 				5DE7768829A69C4E0024B8E8 /* Player.swift in Sources */,
 				5DE7768B29A69C660024B8E8 /* CorrectGuess.swift in Sources */,
+				5D8EA8E729A7EC2900A4EDAC /* SingleplayerView.swift in Sources */,
 				5DE7768429A69C170024B8E8 /* Game+GKLocalPlayerListener.swift in Sources */,
 				5DE7768129A69BFA0024B8E8 /* Game.swift in Sources */,
 			);
@@ -347,7 +355,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.zcutlerf.GameKitRealTime;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zcutlerf.SFGuess;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -382,7 +390,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.zcutlerf.GameKitRealTime;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zcutlerf.SFGuess;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;

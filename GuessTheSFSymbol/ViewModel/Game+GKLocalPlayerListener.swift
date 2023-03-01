@@ -5,6 +5,7 @@
 //  Created by Zoe Cutler on 2/20/23.
 //
 
+import Foundation
 import GameKit
 
 // GKLocalPlayerListener and GKMatchDelegate
@@ -43,8 +44,10 @@ extension Game {
                 try PropertyListSerialization.propertyList(from: data, format: nil) as? [String: Any] {
                 
                 // Restore the new correct guess from the property list
-                if let newCorrectGuess = gamePropertyList["newCorrectGuess"] as? CorrectGuess {
-                    
+                if let date = gamePropertyList["date"] as? Date,
+                   let round = gamePropertyList["round"] as? Int,
+                   let answer = gamePropertyList["answer"] as? String {
+                    let newCorrectGuess = CorrectGuess(date: date, round: round, answer: answer)
                     //Find the index of the player we are talking about
                     if let index = opponents.firstIndex(where: { $0.gkPlayer.gamePlayerID == player.gamePlayerID }) {
                         opponents[index].correctGuesses.append(newCorrectGuess)

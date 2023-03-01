@@ -84,6 +84,7 @@ import GameKit
         opponents = []
         round = 0
         roundIsFinished = false
+        localPlayer?.correctGuesses = []
         currentMatch?.delegate = nil
         currentMatch = nil
     }
@@ -153,7 +154,9 @@ import GameKit
             var gamePropertyList: [String: Any] = [:]
             
             // Add the local player's new correct guess
-            gamePropertyList["newCorrectGuess"] = guess
+            gamePropertyList["date"] = guess.date
+            gamePropertyList["round"] = guess.round
+            gamePropertyList["answer"] = guess.answer
             
             let gameData = try PropertyListSerialization.data(fromPropertyList: gamePropertyList, format: .binary, options: 0)
             try currentMatch?.sendData(toAllPlayers: gameData, with: .reliable)

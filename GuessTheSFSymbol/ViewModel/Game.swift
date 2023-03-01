@@ -18,7 +18,7 @@ import GameKit
     
     @Published var minPlayers = 2
     @Published var maxPlayers = 4
-    @Published var numberOfRounds = 10
+    @Published var numberOfRounds = 4
     
     @Published var round: Int = 0
     @Published var roundIsFinished = false
@@ -163,6 +163,14 @@ import GameKit
         } catch {
             //Handle error sending new correct guess
             print("Error sending new correct guess: \(error.localizedDescription)")
+        }
+    }
+    
+    var gameIsOver: Bool {
+        if round == numberOfRounds - 1 && roundIsFinished {
+            return true
+        } else {
+            return false
         }
     }
     

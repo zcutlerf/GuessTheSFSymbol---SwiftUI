@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CorrectGuess {
+struct CorrectGuess: Codable {
     var date = Date()
     var round: Int
     var answer: String

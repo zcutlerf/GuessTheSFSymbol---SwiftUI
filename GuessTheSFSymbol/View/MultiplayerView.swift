@@ -13,6 +13,37 @@ struct MultiplayerView: View {
     
     @State private var guessText = ""
     
+    var allPlayers: [Player] {
+        var allPlayers = game.opponents
+        if let localPlayer = game.localPlayer {
+            allPlayers.append(localPlayer)
+        }
+        
+        return allPlayers
+    }
+    
+    var winningPlayer: Player? {
+        let sortedPlayers = allPlayers.sorted(by: { $0.score > $1.score })
+        
+        return sortedPlayers.first
+    }
+    
+    var guessedCorrectly: Bool? {
+        guard let localPlayer = game.localPlayer else {
+            return nil
+        }
+        
+        if game.roundIsFinished {
+            if localPlayer.correctGuesses.contains(where: { $0.round == game.round }) {
+                return true
+            } else {
+                return false
+            }
+        } else {
+            return nil
+        }
+    }
+    
     var body: some View {
         ScrollView {
             VStack {
@@ -48,33 +79,10 @@ struct MultiplayerView: View {
                     }
                 }
                 
-                HStack {
-                    Button(role: .destructive) {
-                        dismiss()
-                    } label: {
-                        Text("Quit")
-                            .font(.title2)
-                            .fontWeight(.semibold)
-                    }
-                    .buttonStyle(.bordered)
-                    
-                    Spacer()
-                    
-                    Button {
-                        //TODO: send skip message of some sort? Maybe CorrectGuess could become Submission, more general
-                    } label: {
-                        Text("Skip")
-                            .font(.title2)
-                            .fontWeight(.semibold)
-                    }
-                    .buttonStyle(.bordered)
-                    
-                }
-                
-                Divider()
-                
-                if game.symbolsToGuess.indices.contains(game.round) {
-                    SymbolToGuessView(symbolName: game.symbolsToGuess[game.round], guessText: $guessText, guessedCorrectly: game.roundIsFinished)
+                if game.gameIsOver {
+                    gameoverView
+                } else {
+                    gameplayView
                 }
             }
             .padding()
@@ -85,14 +93,79 @@ struct MultiplayerView: View {
                 guessText = ""
             }
             .onChange(of: game.roundIsFinished) { newValue in
-                if newValue == true {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                if newValue == true && !game.gameIsOver {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
                         //Go to next round
                         game.round += 1
                         game.roundIsFinished = false
                     }
                 }
             }
+        }
+    }
+}
+
+extension MultiplayerView {
+    var gameplayView: some View {
+        Group {
+            HStack {
+                Button(role: .destructive) {
+                    dismiss()
+                } label: {
+                    Text("Quit")
+                        .font(.title2)
+                        .fontWeight(.semibold)
+                }
+                .buttonStyle(.bordered)
+                
+                Spacer()
+                
+                Button {
+                    //TODO: send skip message of some sort? Maybe CorrectGuess could become Submission, more general
+                } label: {
+                    Text("Skip")
+                        .font(.title2)
+                        .fontWeight(.semibold)
+                }
+                .buttonStyle(.bordered)
+                
+            }
+            
+            Divider()
+            
+            if game.symbolsToGuess.indices.contains(game.round) {
+                SymbolToGuessView(symbolName: game.symbolsToGuess[game.round], guessText: $guessText, guessedCorrectly: guessedCorrectly)
+            }
+        }
+    }
+    
+    var gameoverView: some View {
+        VStack {
+            if let winningPlayer = winningPlayer {
+                winningPlayer.avatar
+                    .resizable()
+                    .scaledToFit()
+                    .clipShape(Circle())
+                    .padding(.horizontal, 60.0)
+                
+                Text("\(winningPlayer.gkPlayer.displayName) wins!")
+                    .font(.title)
+                    .fontWeight(.medium)
+                    .foregroundColor(.accentColor)
+                
+                Text("Score: \(winningPlayer.score.description)")
+                    .font(.title3)
+                    .fontWeight(.bold)
+            }
+            
+            Button(role: .destructive) {
+                dismiss()
+            } label: {
+                Text("Quit")
+                    .font(.title2)
+                    .fontWeight(.semibold)
+            }
+            .buttonStyle(.bordered)
         }
     }
 }

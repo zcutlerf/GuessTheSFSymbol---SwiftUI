@@ -10,7 +10,7 @@ import SwiftUI
 struct SymbolToGuessView: View {
     var symbolName: String
     @Binding var guessText: String
-    var guessedCorrectly: Bool
+    var guessedCorrectly: Bool?
     
     var body: some View {
         VStack {
@@ -28,19 +28,25 @@ struct SymbolToGuessView: View {
                 .multilineTextAlignment(.center)
             
             HStack {
-                if guessedCorrectly {
+                if guessedCorrectly == nil {
+                    TextField("Guess", text: $guessText)
+                        .textFieldStyle(.roundedBorder)
+                } else {
                     Text(symbolName)
                         .font(.headline)
                         .padding(7)
                     
                     Spacer()
                     
-                    Image(systemName: "checkmark.seal.fill")
-                        .foregroundColor(.green)
-                        .imageScale(.large)
-                } else {
-                    TextField("Guess", text: $guessText)
-                        .textFieldStyle(.roundedBorder)
+                    if guessedCorrectly! {
+                        Image(systemName: "checkmark.seal.fill")
+                            .foregroundColor(.green)
+                            .imageScale(.large)
+                    } else {
+                        Image(systemName: "xmark.seal")
+                            .foregroundColor(.red)
+                            .imageScale(.large)
+                    }
                 }
             }
         }

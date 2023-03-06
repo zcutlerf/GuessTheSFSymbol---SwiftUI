@@ -13,6 +13,9 @@ struct MultiplayerView: View {
     
     @State private var guessText = ""
     
+    @State private var isShowingErrorAlert = false
+    @State private var alertMessage = ""
+    
     var allPlayers: [Player] {
         var allPlayers = game.opponents
         if let localPlayer = game.localPlayer {
@@ -98,6 +101,21 @@ struct MultiplayerView: View {
                         //Go to next round
                         game.round += 1
                         game.roundIsFinished = false
+                    }
+                }
+            }
+            .onChange(of: game.hasOpponents, perform: { newValue in
+                if newValue == false {
+                    alertMessage = "Game Over: All players have quit this game."
+                    isShowingErrorAlert = true
+                }
+            })
+            .alert(alertMessage, isPresented: $isShowingErrorAlert) {
+                Button("dismiss", role: .cancel) {
+                    alertMessage = ""
+                    
+                    if !game.hasOpponents {
+                        game.quitGame()
                     }
                 }
             }

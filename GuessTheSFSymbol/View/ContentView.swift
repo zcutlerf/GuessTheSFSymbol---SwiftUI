@@ -76,7 +76,7 @@ struct ContentView: View {
                     }
             }
             .onReceive(timer, perform: { _ in
-                symbolPreview = Symbols.shared.randomSymbol()
+                symbolPreview = Symbols.shared.randomSymbol(from: .hard)
             })
             .navigationTitle("SFGuess")
         }

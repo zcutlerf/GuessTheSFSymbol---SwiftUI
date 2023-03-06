@@ -25,10 +25,6 @@ import GameKit
         if let index = opponents.firstIndex(where: { $0.gkPlayer.gamePlayerID == player.gamePlayerID }) {
             opponents.remove(at: index)
         }
-        
-        if opponents.isEmpty {
-            quitGame()
-        }
     }
     
     //Handle when an opponent sends us match data

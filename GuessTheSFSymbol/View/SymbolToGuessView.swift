@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct SymbolToGuessView: View {
+    @FocusState private var textFieldIsFocused: Bool
+    
     var symbolName: String
     @Binding var guessText: String
     var guessedCorrectly: Bool?
@@ -31,6 +33,7 @@ struct SymbolToGuessView: View {
                 if guessedCorrectly == nil {
                     TextField("Guess", text: $guessText)
                         .textFieldStyle(.roundedBorder)
+                        .focused($textFieldIsFocused)
                 } else {
                     Text(symbolName)
                         .font(.headline)
@@ -49,6 +52,9 @@ struct SymbolToGuessView: View {
                     }
                 }
             }
+        }
+        .onAppear {
+            textFieldIsFocused = true
         }
     }
 }

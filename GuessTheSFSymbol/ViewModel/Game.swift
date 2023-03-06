@@ -15,6 +15,13 @@ import GameKit
     @Published var isPlayingGame = false
     @Published var currentMatch: GKMatch?
     @Published var opponents: [Player] = []
+    var hasOpponents: Bool {
+        if opponents.count == 0 {
+            return false
+        } else {
+            return true
+        }
+    }
     
     @Published var minPlayers = 2
     @Published var maxPlayers = 4

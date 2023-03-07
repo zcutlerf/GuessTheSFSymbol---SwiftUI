@@ -55,61 +55,12 @@ struct MultiplayerView: View {
     var body: some View {
         ScrollView {
             VStack {
-                HStack {
-                    if game.localPlayer != nil {
-                        VStack {
-                            game.localPlayer!.avatar
-                                .resizable()
-                                .scaledToFit()
-                                .frame(maxWidth: 50.0, maxHeight: 50.0)
-                                .clipShape(Circle())
-                            
-                            Text(game.localPlayer!.score.description)
-                                .font(.title3)
-                                .fontWeight(.bold)
-                        }
-                        .padding(5)
-                    }
-                    
-                    ForEach(game.opponents) { opponent in
-                        VStack {
-                            opponent.avatar
-                                .resizable()
-                                .scaledToFit()
-                                .frame(maxWidth: 50.0, maxHeight: 50.0)
-                                .clipShape(Circle())
-                            
-                            Text(opponent.score.description)
-                                .font(.title3)
-                                .fontWeight(.bold)
-                        }
-                        .padding(5)
-                    }
-                }
-                
                 if game.symbolsToGuess == [] {
                     awaitingResponseView
                 } else if game.gameIsOver {
                     gameoverView
                 } else {
                     gameplayView
-                    
-                    ForEach(allPlayers) { player in
-                        Text(player.gkPlayer.displayName)
-                            .fontWeight(.bold)
-                        ForEach(player.guesses, id: \.date) { guess in
-                            HStack {
-                                Text(guess.round.description)
-                                
-                                switch guess.answer {
-                                case .correct(let answer):
-                                    Text(answer)
-                                case .skip:
-                                    Text("[skip]")
-                                }
-                            }
-                        }
-                    }
                 }
             }
             .padding()
@@ -161,6 +112,8 @@ struct MultiplayerView: View {
 extension MultiplayerView {
     var awaitingResponseView: some View {
         Group {
+            avatarsView(showScores: false)
+            
             ProgressView()
                 .padding()
             
@@ -180,6 +133,50 @@ extension MultiplayerView {
         }
     }
     
+    func avatarsView(showScores: Bool) -> some View {
+        HStack {
+            if game.localPlayer != nil {
+                VStack {
+                    game.localPlayer!.avatar
+                        .resizable()
+                        .scaledToFit()
+                        .frame(maxWidth: 50.0, maxHeight: 50.0)
+                        .clipShape(Circle())
+                    
+                    if showScores {
+                        Text(game.localPlayer!.score.description)
+                            .font(.title3)
+                            .fontWeight(.bold)
+                    } else {
+                        Text(game.localPlayer!.gkPlayer.displayName)
+                            .lineLimit(1)
+                    }
+                }
+                .padding(5)
+            }
+            
+            ForEach(game.opponents) { opponent in
+                VStack {
+                    opponent.avatar
+                        .resizable()
+                        .scaledToFit()
+                        .frame(maxWidth: 50.0, maxHeight: 50.0)
+                        .clipShape(Circle())
+                    
+                    if showScores {
+                        Text(opponent.score.description)
+                            .font(.title3)
+                            .fontWeight(.bold)
+                    } else {
+                        Text(opponent.gkPlayer.displayName)
+                            .lineLimit(1)
+                    }
+                }
+                .padding(5)
+            }
+        }
+    }
+    
     var gameplayView: some View {
         Group {
             HStack {
@@ -191,6 +188,10 @@ extension MultiplayerView {
                         .fontWeight(.semibold)
                 }
                 .buttonStyle(.bordered)
+                
+                Spacer()
+                
+                avatarsView(showScores: true)
                 
                 Spacer()
                 

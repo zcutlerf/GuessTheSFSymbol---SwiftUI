@@ -19,7 +19,7 @@ struct SymbolToGuessView: View {
             Image(systemName: symbolName)
                 .resizable()
                 .scaledToFit()
-                .frame(height: 180.0)
+                .frame(height: 160.0)
             
             
             Divider()

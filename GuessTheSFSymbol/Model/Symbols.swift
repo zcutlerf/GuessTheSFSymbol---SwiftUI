@@ -26,10 +26,13 @@ struct Symbols {
                 
                 for name in hardSymbolNames {
                     let numberOfComponents = name.components(separatedBy: ".").count
+                    
+                    if numberOfComponents <= 2 {
+                        easySymbolNames.append(name)
+                    }
+                    
                     if numberOfComponents <= 4 {
                         mediumSymbolNames.append(name)
-                    } else if numberOfComponents <= 2 {
-                        easySymbolNames.append(name)
                     }
                 }
             } catch {

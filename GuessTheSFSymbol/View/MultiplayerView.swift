@@ -89,6 +89,9 @@ struct MultiplayerView: View {
                 }
             }
             .padding()
+            .overlay(alignment: .bottom) {
+                AutocompleteView(guessText: $guessText)
+            }
             .onChange(of: guessText) { newValue in
                 game.validateGuess(newValue)
             }

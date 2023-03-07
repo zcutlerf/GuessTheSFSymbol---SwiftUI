@@ -38,6 +38,9 @@ struct SingleplayerView: View {
             }
         }
         .padding()
+        .overlay(alignment: .bottom) {
+            AutocompleteView(guessText: $guessText)
+        }
         .onReceive(countdownTimer) { _ in
             if isPlayingGame && timeLeft > 0 {
                 timeLeft -= 1
@@ -52,11 +55,6 @@ struct SingleplayerView: View {
                 withAnimation(.easeInOut(duration: 0.3)) {
                     isShowingSuccessIcon = false
                 }
-            }
-        }
-        .toolbar {
-            ToolbarItem(placement: .keyboard) {
-                AutocompleteView(guess: guessText)
             }
         }
     }

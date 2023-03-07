@@ -26,10 +26,7 @@ import GameKit
         
         currentMatch = match
         currentMatch?.delegate = self
-        
-        //Get list of symbols to guess this round
-        symbolsToGuess = Symbols.shared.generateRoundSymbols(for: 10)
-        
+                
         isPlayingGame = true
     }
     

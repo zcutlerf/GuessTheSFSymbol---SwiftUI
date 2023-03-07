@@ -36,8 +36,13 @@ struct MultiplayerView: View {
             return nil
         }
         
+        // If the player skips, return that they did not guess correctly.
+        if localPlayer.guesses.contains(where: { $0.round == game.round && $0.answer == .skip }) {
+            return false
+        }
+        
         if game.roundIsFinished {
-            if localPlayer.correctGuesses.contains(where: { $0.round == game.round }) {
+            if localPlayer.correctAnswers.contains(where: { $0.round == game.round }) {
                 return true
             } else {
                 return false
@@ -82,16 +87,32 @@ struct MultiplayerView: View {
                     }
                 }
                 
-                if game.gameIsOver {
+                if game.symbolsToGuess == [] {
+                    awaitingResponseView
+                } else if game.gameIsOver {
                     gameoverView
                 } else {
                     gameplayView
+                    
+                    ForEach(allPlayers) { player in
+                        Text(player.gkPlayer.displayName)
+                            .fontWeight(.bold)
+                        ForEach(player.guesses, id: \.date) { guess in
+                            HStack {
+                                Text(guess.round.description)
+                                
+                                switch guess.answer {
+                                case .correct(let answer):
+                                    Text(answer)
+                                case .skip:
+                                    Text("[skip]")
+                                }
+                            }
+                        }
+                    }
                 }
             }
             .padding()
-            .overlay(alignment: .bottom) {
-                AutocompleteView(guessText: $guessText)
-            }
             .onChange(of: guessText) { newValue in
                 game.validateGuess(newValue)
             }
@@ -107,6 +128,11 @@ struct MultiplayerView: View {
                     }
                 }
             }
+            .onChange(of: game.allPlayersHaveSkipped, perform: { newValue in
+                if newValue == true {
+                    game.roundIsFinished = true
+                }
+            })
             .onChange(of: game.hasOpponents, perform: { newValue in
                 if newValue == false {
                     alertMessage = "Game Over: All players have quit this game."
@@ -122,11 +148,38 @@ struct MultiplayerView: View {
                     }
                 }
             }
+            .onAppear {
+                game.getSymbolsToGuess()
+            }
+        }
+        .overlay(alignment: .bottom) {
+            AutocompleteView(guessText: $guessText)
         }
     }
 }
 
 extension MultiplayerView {
+    var awaitingResponseView: some View {
+        Group {
+            ProgressView()
+                .padding()
+            
+            Text("Waiting for opponents...")
+                .foregroundColor(.secondary)
+                .font(.caption)
+                .padding(.horizontal)
+            
+            Button(role: .destructive) {
+                dismiss()
+            } label: {
+                Text("Quit")
+                    .font(.title2)
+                    .fontWeight(.semibold)
+            }
+            .buttonStyle(.bordered)
+        }
+    }
+    
     var gameplayView: some View {
         Group {
             HStack {
@@ -142,7 +195,7 @@ extension MultiplayerView {
                 Spacer()
                 
                 Button {
-                    //TODO: send skip message of some sort? Maybe CorrectGuess could become Submission, more general
+                    game.skipRound()
                 } label: {
                     Text("Skip")
                         .font(.title2)

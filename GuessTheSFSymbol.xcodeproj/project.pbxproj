@@ -21,7 +21,7 @@
 		5DE7768429A69C170024B8E8 /* Game+GKLocalPlayerListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE7768329A69C170024B8E8 /* Game+GKLocalPlayerListener.swift */; };
 		5DE7768629A69C230024B8E8 /* Game+GKMatchmakerViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE7768529A69C230024B8E8 /* Game+GKMatchmakerViewControllerDelegate.swift */; };
 		5DE7768829A69C4E0024B8E8 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE7768729A69C4E0024B8E8 /* Player.swift */; };
-		5DE7768B29A69C660024B8E8 /* CorrectGuess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE7768A29A69C660024B8E8 /* CorrectGuess.swift */; };
+		5DE7768B29A69C660024B8E8 /* Guess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE7768A29A69C660024B8E8 /* Guess.swift */; };
 		5DE7768D29A69C6F0024B8E8 /* Symbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE7768C29A69C6F0024B8E8 /* Symbols.swift */; };
 		5DE7768F29A69C890024B8E8 /* SFSymbols.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5DE7768E29A69C890024B8E8 /* SFSymbols.txt */; };
 		5DE7769129A6B4440024B8E8 /* SimpleSymbols.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5DE7769029A6B4440024B8E8 /* SimpleSymbols.txt */; };
@@ -45,7 +45,7 @@
 		5DE7768329A69C170024B8E8 /* Game+GKLocalPlayerListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Game+GKLocalPlayerListener.swift"; sourceTree = "<group>"; };
 		5DE7768529A69C230024B8E8 /* Game+GKMatchmakerViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Game+GKMatchmakerViewControllerDelegate.swift"; sourceTree = "<group>"; };
 		5DE7768729A69C4E0024B8E8 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
-		5DE7768A29A69C660024B8E8 /* CorrectGuess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorrectGuess.swift; sourceTree = "<group>"; };
+		5DE7768A29A69C660024B8E8 /* Guess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Guess.swift; sourceTree = "<group>"; };
 		5DE7768C29A69C6F0024B8E8 /* Symbols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Symbols.swift; sourceTree = "<group>"; };
 		5DE7768E29A69C890024B8E8 /* SFSymbols.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = SFSymbols.txt; sourceTree = "<group>"; };
 		5DE7769029A6B4440024B8E8 /* SimpleSymbols.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = SimpleSymbols.txt; sourceTree = "<group>"; };
@@ -127,7 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				5DE7768729A69C4E0024B8E8 /* Player.swift */,
-				5DE7768A29A69C660024B8E8 /* CorrectGuess.swift */,
+				5DE7768A29A69C660024B8E8 /* Guess.swift */,
 				5DE7768C29A69C6F0024B8E8 /* Symbols.swift */,
 				5D1080CE29B68D69005ED7FF /* Difficulty.swift */,
 				5DE7768E29A69C890024B8E8 /* SFSymbols.txt */,
@@ -217,7 +217,7 @@
 				5DE7767229A69BB70024B8E8 /* ContentView.swift in Sources */,
 				5DE7767029A69BB70024B8E8 /* GuessTheSFSymbolApp.swift in Sources */,
 				5DE7768829A69C4E0024B8E8 /* Player.swift in Sources */,
-				5DE7768B29A69C660024B8E8 /* CorrectGuess.swift in Sources */,
+				5DE7768B29A69C660024B8E8 /* Guess.swift in Sources */,
 				5D8EA8E729A7EC2900A4EDAC /* SingleplayerView.swift in Sources */,
 				5DE7768429A69C170024B8E8 /* Game+GKLocalPlayerListener.swift in Sources */,
 				5D1080CD29B681C5005ED7FF /* AutocompleteView.swift in Sources */,

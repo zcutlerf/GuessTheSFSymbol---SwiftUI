@@ -43,12 +43,22 @@ import GameKit
                 if let date = gamePropertyList["date"] as? Date,
                    let round = gamePropertyList["round"] as? Int,
                    let answer = gamePropertyList["answer"] as? String {
-                    let newCorrectGuess = CorrectGuess(date: date, round: round, answer: answer)
-                    //Find the index of the player we are talking about
-                    if let index = opponents.firstIndex(where: { $0.gkPlayer.gamePlayerID == player.gamePlayerID }) {
-                        opponents[index].correctGuesses.append(newCorrectGuess)
+                    var newGuess = Guess(date: date, round: round, answer: .skip)
+                    
+                    if answer != "" {
+                        newGuess.answer = .correct(answer)
                         roundIsFinished = true
                     }
+                    
+                    //Find the index of the player we are talking about
+                    if let index = opponents.firstIndex(where: { $0.gkPlayer.gamePlayerID == player.gamePlayerID }) {
+                        opponents[index].guesses.append(newGuess)
+                    }
+                }
+                
+                // Get the symbols to guess from the player who generated them
+                if let symbols = gamePropertyList["symbolsToGuess"] as? [String] {
+                    symbolsToGuess = symbols
                 }
             }
         } catch {

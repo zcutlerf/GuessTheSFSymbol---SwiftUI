@@ -7,8 +7,13 @@
 
 import Foundation
 
-struct CorrectGuess: Codable {
+struct Guess: Codable {
     var date = Date()
     var round: Int
-    var answer: String
+    var answer: Answer
+    
+    enum Answer: Codable, Equatable {
+        case correct(String)
+        case skip
+    }
 }

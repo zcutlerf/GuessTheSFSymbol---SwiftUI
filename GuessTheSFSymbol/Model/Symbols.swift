@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Symbols {
+class Symbols {
     static let shared = Symbols()
     
     var practiceSymbolNames: [String] = []

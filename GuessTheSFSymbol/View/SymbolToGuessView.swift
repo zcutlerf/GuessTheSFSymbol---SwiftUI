@@ -24,14 +24,9 @@ struct SymbolToGuessView: View {
             
             Divider()
             
-            Text("What is this SF Symbol?")
-                .font(.title2)
-                .fontWeight(.medium)
-                .multilineTextAlignment(.center)
-            
             HStack {
                 if guessedCorrectly == nil {
-                    TextField("Guess", text: $guessText)
+                    TextField("Guess.the.SF.Symbol", text: $guessText)
                         .textFieldStyle(.roundedBorder)
                         .focused($textFieldIsFocused)
                 } else {

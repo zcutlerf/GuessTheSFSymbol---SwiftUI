@@ -38,18 +38,4 @@ enum TimeLimit: CaseIterable {
             return 240
         }
     }
-    
-    var gkLeaderboardID: String {
-        #warning("TODO: create more leaderboards on App Store Connect")
-        switch self {
-        case .oneMinute:
-            return "solo60s"
-        case .twoMinutes:
-            return ""
-        case .threeMinutes:
-            return ""
-        case .fourMinutes:
-            return ""
-        }
-    }
 }

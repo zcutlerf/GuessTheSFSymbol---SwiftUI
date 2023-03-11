@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MultiplayerView: View {
-    @EnvironmentObject var game: Game
+    @EnvironmentObject var game: MultiplayerGame
     @Environment(\.dismiss) var dismiss
     
     @State private var guessText = ""

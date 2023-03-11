@@ -8,7 +8,7 @@
 import GameKit
 
 // GKMatchmakerViewControllerDelegate
-@MainActor extension Game {
+@MainActor extension MultiplayerGame {
     //Handle finding a match
     func matchmakerViewController(_ viewController: GKMatchmakerViewController, didFind match: GKMatch) {
         // Dismiss the view controller.

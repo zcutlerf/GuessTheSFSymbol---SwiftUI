@@ -248,6 +248,6 @@ extension MultiplayerView {
 struct MultiplayerView_Previews: PreviewProvider {
     static var previews: some View {
         MultiplayerView()
-            .environmentObject(Game(withSampleData: true))
+            .environmentObject(MultiplayerGame(withSampleData: true))
     }
 }

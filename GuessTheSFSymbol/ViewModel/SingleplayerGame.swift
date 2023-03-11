@@ -10,6 +10,7 @@ import Foundation
 class SingleplayerGame: ObservableObject {
     @Published var isPlayingGame = false
     @Published var selectedDifficulty: Difficulty = .easy
+    @Published var timeLimit: TimeLimit = .oneMinute
     
     @Published var symbolToGuess = ""
     @Published var score = 0

@@ -86,15 +86,14 @@ extension SingleplayerView {
                 Text("Time Limit:")
                     .font(.title3)
                     .fontWeight(.semibold)
-                Picker("Time Limit", selection: $timeLeft) {
-                    Text("1 minute")
-                        .tag(60)
-                    Text("2 minutes")
-                        .tag(120)
-                    Text("3 minutes")
-                        .tag(180)
-                    Text("4 minutes")
-                        .tag(240)
+                Picker("Time Limit", selection: $game.timeLimit) {
+                    ForEach(TimeLimit.allCases, id: \.pickerLabel) { timeLimit in
+                        Text(timeLimit.pickerLabel)
+                            .tag(timeLimit)
+                    }
+                }
+                .onChange(of: game.timeLimit) { newValue in
+                    timeLeft = game.timeLimit.seconds
                 }
             }
             

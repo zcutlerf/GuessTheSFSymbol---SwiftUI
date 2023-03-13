@@ -20,6 +20,8 @@ struct SingleplayerView: View {
     @State private var isShowingSuccessIcon = false
     @State private var isSkipping = false
     
+    @State private var isShowingLeaderboardSheet = false
+    
     var body: some View {
         
         VStack {
@@ -27,6 +29,9 @@ struct SingleplayerView: View {
                 gameOptionsView
             } else if timeLeft == 0 {
                 gameoverView
+                    .onAppear {
+                        game.finishedGame()
+                    }
             } else {
                 ScrollView {
                     gameplayView
@@ -39,6 +44,9 @@ struct SingleplayerView: View {
                 AutocompleteView(guessText: $guessText)
             }
         }
+        .sheet(isPresented: $isShowingLeaderboardSheet, content: {
+            LeaderboardView(difficulty: game.selectedDifficulty, timeLimit: game.timeLimit, highScores: game.highScores)
+        })
         .onReceive(countdownTimer) { _ in
             if game.isPlayingGame && timeLeft > 0 {
                 timeLeft -= 1
@@ -102,6 +110,7 @@ extension SingleplayerView {
             } label: {
                 Text("Play!")
                     .font(.title)
+                    .fontWeight(.bold)
             }
             .buttonStyle(.borderedProminent)
             
@@ -190,6 +199,39 @@ extension SingleplayerView {
             Text("Score: \(game.score)")
                 .font(.title3)
                 .fontWeight(.bold)
+            
+            switch game.leaderboardStatus {
+            case .notStarted:
+                EmptyView()
+            case .loading:
+                ProgressView()
+                
+                Text("Loading High Scores...")
+                    .foregroundColor(.secondary)
+                    .font(.caption)
+                    .padding(.horizontal)
+            case .succeeded:
+                if let myHighScore = game.myHighScore {
+                    Button {
+                        isShowingLeaderboardSheet.toggle()
+                    } label: {
+                        if myHighScore.isNew {
+                            Text("NEW High Score")
+                                .font(.title3)
+                                .fontWeight(.bold)
+                        } else {
+                            Text("High Score: \(myHighScore.score)")
+                                .font(.title3)
+                                .fontWeight(.bold)
+                        }
+                    }
+                    .buttonStyle(.borderedProminent)
+                }
+            case .failed:
+                Text("Leaderboard not available.")
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+            }
             
             Divider()
             

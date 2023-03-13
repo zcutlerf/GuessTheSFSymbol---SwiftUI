@@ -104,7 +104,9 @@ struct MultiplayerView: View {
             }
         }
         .overlay(alignment: .bottom) {
-            AutocompleteView(guessText: $guessText)
+            if !game.gameIsOver {
+                AutocompleteView(guessText: $guessText)
+            }
         }
     }
 }

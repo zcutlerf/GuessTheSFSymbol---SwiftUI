@@ -52,7 +52,7 @@ struct AutocompleteView: View {
                         }
                     }
                 }
-                .padding()
+                .padding(10)
                 .background(.bar)
             }
         }

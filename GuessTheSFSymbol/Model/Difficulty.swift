@@ -25,4 +25,33 @@ enum Difficulty: String, CaseIterable {
             return Symbols.shared.hardSymbolNames
         }
     }
+    
+    func getLeaderboardID(from timeLimit: TimeLimit) -> String? {
+        var id = "solo"
+        
+        switch timeLimit {
+        case .oneMinute:
+            id += "60"
+        case .twoMinutes:
+            id += "120"
+        case .threeMinutes:
+            id += "180"
+        case .fourMinutes:
+            id += "240"
+        }
+        
+        switch self {
+        case .practice:
+            //No leaderboards for practice mode
+            return nil
+        case .easy:
+            id += "easy"
+        case .medium:
+            id += "medium"
+        case .hard:
+            id += "hard"
+        }
+        
+        return id
+    }
 }

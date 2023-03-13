@@ -20,6 +20,8 @@ struct SingleplayerView: View {
     @State private var isShowingSuccessIcon = false
     @State private var isSkipping = false
     
+    @State private var isShowingLeaderboardSheet = false
+    
     var body: some View {
         
         VStack {
@@ -27,18 +29,23 @@ struct SingleplayerView: View {
                 gameOptionsView
             } else if timeLeft == 0 {
                 gameoverView
+                    .onAppear {
+                        game.finishedGame()
+                    }
             } else {
                 ScrollView {
                     gameplayView
                 }
             }
         }
-        .padding()
         .overlay(alignment: .bottom) {
-            if game.isPlayingGame && !isSkipping {
+            if game.isPlayingGame && timeLeft > 0 && !isSkipping {
                 AutocompleteView(guessText: $guessText)
             }
         }
+        .sheet(isPresented: $isShowingLeaderboardSheet, content: {
+            LeaderboardView(difficulty: game.selectedDifficulty, timeLimit: game.timeLimit, highScores: game.highScores)
+        })
         .onReceive(countdownTimer) { _ in
             if game.isPlayingGame && timeLeft > 0 {
                 timeLeft -= 1
@@ -86,15 +93,14 @@ extension SingleplayerView {
                 Text("Time Limit:")
                     .font(.title3)
                     .fontWeight(.semibold)
-                Picker("Time Limit", selection: $timeLeft) {
-                    Text("1 minute")
-                        .tag(60)
-                    Text("2 minutes")
-                        .tag(120)
-                    Text("3 minutes")
-                        .tag(180)
-                    Text("4 minutes")
-                        .tag(240)
+                Picker("Time Limit", selection: $game.timeLimit) {
+                    ForEach(TimeLimit.allCases, id: \.pickerLabel) { timeLimit in
+                        Text(timeLimit.pickerLabel)
+                            .tag(timeLimit)
+                    }
+                }
+                .onChange(of: game.timeLimit) { newValue in
+                    timeLeft = game.timeLimit.seconds
                 }
             }
             
@@ -103,6 +109,7 @@ extension SingleplayerView {
             } label: {
                 Text("Play!")
                     .font(.title)
+                    .fontWeight(.bold)
             }
             .buttonStyle(.borderedProminent)
             
@@ -179,39 +186,70 @@ extension SingleplayerView {
                     }
                 }
         }
+        .padding()
     }
     
     var gameoverView: some View {
-        VStack(spacing: 15.0) {
+        VStack(spacing: 10.0) {
             Text("Time's Up!")
-                .font(.title)
+                .font(.largeTitle)
                 .fontWeight(.medium)
                 .foregroundColor(.accentColor)
             
             Text("Score: \(game.score)")
-                .font(.title3)
+                .font(.title)
                 .fontWeight(.bold)
             
-            Divider()
-            
-            HStack {
-                VStack(alignment: .leading) {
-                    Text("Symbols guessed correctly:")
-                        .font(.title3)
-                        .fontWeight(.bold)
-                    
-                    ForEach(game.correctGuesses, id: \.self) { correctGuess in
-                        HStack {
-                            Image(systemName: correctGuess)
-                            Text(correctGuess)
+            switch game.leaderboardStatus {
+            case .notStarted:
+                EmptyView()
+            case .loading:
+                ProgressView()
+                
+                Text("Loading High Scores...")
+                    .foregroundColor(.secondary)
+                    .font(.caption)
+                    .padding(.horizontal)
+            case .succeeded:
+                if let myHighScore = game.myHighScore {
+                    Button {
+                        isShowingLeaderboardSheet.toggle()
+                    } label: {
+                        if myHighScore.isNew {
+                            Text("NEW High Score")
+                                .font(.title2)
+                                .fontWeight(.bold)
+                        } else {
+                            Text("High Score: \(myHighScore.score)")
+                                .font(.title3)
+                                .fontWeight(.bold)
                         }
                     }
+                    .buttonStyle(.borderedProminent)
                 }
-                
-                Spacer()
+            case .failed:
+                Text("Leaderboard not available.")
+                    .font(.caption)
+                    .foregroundColor(.secondary)
             }
             
-            Divider()
+            List {
+                Section {
+                    ForEach(game.correctGuesses, id: \.self) { correctGuess in
+                        HStack {
+                            Text(correctGuess)
+                                .font(.title3)
+                            
+                            Spacer()
+                            
+                            Image(systemName: correctGuess)
+                                .imageScale(.large)
+                        }
+                    }
+                } header: {
+                    Text("Symbols Guessed Correctly")
+                }
+            }
             
             Button(role: .destructive) {
                 dismiss()

@@ -205,10 +205,10 @@ extension MultiplayerView {
                         .fontWeight(.semibold)
                 }
                 .buttonStyle(.bordered)
-                
             }
             
-            Divider()
+            ProgressView(value: Double(game.round) / Double(game.numberOfRounds))
+                .progressViewStyle(.linear)
             
             if game.symbolsToGuess.indices.contains(game.round) {
                 SymbolToGuessView(symbolName: game.symbolsToGuess[game.round], guessText: $guessText, guessedCorrectly: guessedCorrectly)

@@ -38,9 +38,8 @@ struct SingleplayerView: View {
                 }
             }
         }
-        .padding()
         .overlay(alignment: .bottom) {
-            if game.isPlayingGame && !isSkipping {
+            if game.isPlayingGame && timeLeft > 0 && !isSkipping {
                 AutocompleteView(guessText: $guessText)
             }
         }
@@ -187,17 +186,18 @@ extension SingleplayerView {
                     }
                 }
         }
+        .padding()
     }
     
     var gameoverView: some View {
-        VStack(spacing: 15.0) {
+        VStack(spacing: 10.0) {
             Text("Time's Up!")
-                .font(.title)
+                .font(.largeTitle)
                 .fontWeight(.medium)
                 .foregroundColor(.accentColor)
             
             Text("Score: \(game.score)")
-                .font(.title3)
+                .font(.title)
                 .fontWeight(.bold)
             
             switch game.leaderboardStatus {
@@ -217,7 +217,7 @@ extension SingleplayerView {
                     } label: {
                         if myHighScore.isNew {
                             Text("NEW High Score")
-                                .font(.title3)
+                                .font(.title2)
                                 .fontWeight(.bold)
                         } else {
                             Text("High Score: \(myHighScore.score)")
@@ -233,26 +233,23 @@ extension SingleplayerView {
                     .foregroundColor(.secondary)
             }
             
-            Divider()
-            
-            HStack {
-                VStack(alignment: .leading) {
-                    Text("Symbols guessed correctly:")
-                        .font(.title3)
-                        .fontWeight(.bold)
-                    
+            List {
+                Section {
                     ForEach(game.correctGuesses, id: \.self) { correctGuess in
                         HStack {
-                            Image(systemName: correctGuess)
                             Text(correctGuess)
+                                .font(.title3)
+                            
+                            Spacer()
+                            
+                            Image(systemName: correctGuess)
+                                .imageScale(.large)
                         }
                     }
+                } header: {
+                    Text("Symbols Guessed Correctly")
                 }
-                
-                Spacer()
             }
-            
-            Divider()
             
             Button(role: .destructive) {
                 dismiss()

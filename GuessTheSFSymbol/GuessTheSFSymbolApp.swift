@@ -9,7 +9,7 @@ import SwiftUI
 
 @main
 struct GuessTheSFSymbolApp: App {
-    @StateObject var game = Game(withSampleData: false)
+    @StateObject var game = MultiplayerGame(withSampleData: false)
     
     var body: some Scene {
         WindowGroup {

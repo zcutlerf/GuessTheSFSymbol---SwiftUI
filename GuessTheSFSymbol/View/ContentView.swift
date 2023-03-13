@@ -9,7 +9,7 @@ import SwiftUI
 import GameKit
 
 struct ContentView: View {
-    @EnvironmentObject var game: Game
+    @EnvironmentObject var game: MultiplayerGame
     @State private var isPlayingSolo: Bool = false
     
     @State private var symbolPreview: String = "tortoise"
@@ -86,6 +86,6 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
-            .environmentObject(Game(withSampleData: true))
+            .environmentObject(MultiplayerGame(withSampleData: true))
     }
 }

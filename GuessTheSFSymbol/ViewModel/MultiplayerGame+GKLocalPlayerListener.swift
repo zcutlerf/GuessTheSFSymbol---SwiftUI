@@ -9,7 +9,7 @@ import Foundation
 import GameKit
 
 // GKLocalPlayerListener and GKMatchDelegate
-@MainActor extension Game {
+@MainActor extension MultiplayerGame {
     //Handle when the local player accepts an invite to a match
     func player(_ player: GKPlayer, didAccept invite: GKInvite) {
         // Present the view controller in the invitation state.

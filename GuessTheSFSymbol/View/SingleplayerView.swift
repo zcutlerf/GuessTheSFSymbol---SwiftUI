@@ -10,16 +10,12 @@ import SwiftUI
 struct SingleplayerView: View {
     @Environment(\.dismiss) var dismiss
     
-    @State private var isPlayingGame = false
-    @State private var selectedDifficulty: Difficulty = .easy
+    @StateObject var game = SingleplayerGame()
     
     let countdownTimer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
     @State private var timeLeft: Int = 60
     
-    @State private var symbolToGuess = ""
     @State private var guessText = ""
-    @State private var score = 0
-    @State private var correctGuesses: [String] = []
     
     @State private var isShowingSuccessIcon = false
     @State private var isSkipping = false
@@ -27,7 +23,7 @@ struct SingleplayerView: View {
     var body: some View {
         
         VStack {
-            if !isPlayingGame {
+            if !game.isPlayingGame {
                 gameOptionsView
             } else if timeLeft == 0 {
                 gameoverView
@@ -39,14 +35,16 @@ struct SingleplayerView: View {
         }
         .padding()
         .overlay(alignment: .bottom) {
-            AutocompleteView(guessText: $guessText)
+            if game.isPlayingGame && !isSkipping {
+                AutocompleteView(guessText: $guessText)
+            }
         }
         .onReceive(countdownTimer) { _ in
-            if isPlayingGame && timeLeft > 0 {
+            if game.isPlayingGame && timeLeft > 0 {
                 timeLeft -= 1
             }
         }
-        .onChange(of: score) { _ in
+        .onChange(of: game.score) { _ in
             withAnimation(.easeInOut(duration: 0.3)) {
                 isShowingSuccessIcon = true
             }
@@ -59,25 +57,13 @@ struct SingleplayerView: View {
         }
     }
     
-    func validateGuess(_ guess: String) {
-        let guessCleaned = guess.filter({ !$0.isWhitespace && !$0.isPunctuation && !$0.isNewline }).lowercased()
-        let correctAnswerCleaned = symbolToGuess.filter({ !$0.isWhitespace && !$0.isPunctuation && !$0.isNewline }).lowercased()
-        
-        if guessCleaned == correctAnswerCleaned {
-            correctGuesses.append(symbolToGuess)
-            guessText = ""
-            score += 1
-            symbolToGuess = Symbols.shared.randomSymbol(from: selectedDifficulty)
-        }
-    }
-    
     func skip() {
         isSkipping = true
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             guessText = ""
             isSkipping = false
-            symbolToGuess = Symbols.shared.randomSymbol(from: selectedDifficulty)
+            game.generateNewSymbol()
         }
     }
 }
@@ -89,12 +75,11 @@ extension SingleplayerView {
                 Text("Difficulty:")
                     .font(.title3)
                     .fontWeight(.semibold)
-                Picker("Difficulty", selection: $selectedDifficulty) {
+                Picker("Difficulty", selection: $game.selectedDifficulty) {
                     ForEach(Difficulty.allCases, id: \.self) { difficulty in
                         Text(difficulty.rawValue.capitalized)
                     }
                 }
-                .pickerStyle(.segmented)
             }
             
             VStack {
@@ -102,26 +87,33 @@ extension SingleplayerView {
                     .font(.title3)
                     .fontWeight(.semibold)
                 Picker("Time Limit", selection: $timeLeft) {
-                    Text("15s")
-                        .tag(15)
-                    Text("30s")
-                        .tag(30)
-                    Text("60s")
+                    Text("1 minute")
                         .tag(60)
-                    Text("120s")
+                    Text("2 minutes")
                         .tag(120)
+                    Text("3 minutes")
+                        .tag(180)
+                    Text("4 minutes")
+                        .tag(240)
                 }
-                .pickerStyle(.segmented)
             }
             
             Button {
-                symbolToGuess = Symbols.shared.randomSymbol(from: selectedDifficulty)
-                isPlayingGame = true
+                game.startGame()
             } label: {
                 Text("Play!")
                     .font(.title)
             }
             .buttonStyle(.borderedProminent)
+            
+            Button(role: .destructive) {
+                dismiss()
+            } label: {
+                Text("Quit")
+                    .font(.title2)
+                    .fontWeight(.semibold)
+            }
+            .buttonStyle(.bordered)
         }
     }
     
@@ -160,16 +152,20 @@ extension SingleplayerView {
                 
                 Image(systemName: "chart.line.uptrend.xyaxis.circle")
                 
-                Text(score.description)
+                Text(game.score.description)
                 
                 Spacer()
             }
             .font(.title.weight(.bold))
             .foregroundColor(.accentColor)
             
-            SymbolToGuessView(symbolName: symbolToGuess, guessText: $guessText, guessedCorrectly: isSkipping ? false : nil)
+            SymbolToGuessView(symbolName: game.symbolToGuess, guessText: $guessText, guessedCorrectly: isSkipping ? false : nil)
                 .onChange(of: guessText) { newValue in
-                    validateGuess(newValue)
+                    let isCorrect = game.validateGuess(newValue)
+                    
+                    if isCorrect {
+                        guessText = ""
+                    }
                 }
                 .overlay {
                     if isShowingSuccessIcon {
@@ -192,7 +188,7 @@ extension SingleplayerView {
                 .fontWeight(.medium)
                 .foregroundColor(.accentColor)
             
-            Text("Score: \(score)")
+            Text("Score: \(game.score)")
                 .font(.title3)
                 .fontWeight(.bold)
             
@@ -204,7 +200,7 @@ extension SingleplayerView {
                         .font(.title3)
                         .fontWeight(.bold)
                     
-                    ForEach(correctGuesses, id: \.self) { correctGuess in
+                    ForEach(game.correctGuesses, id: \.self) { correctGuess in
                         HStack {
                             Image(systemName: correctGuess)
                             Text(correctGuess)

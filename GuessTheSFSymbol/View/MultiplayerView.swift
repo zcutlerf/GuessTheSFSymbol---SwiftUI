@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MultiplayerView: View {
-    @EnvironmentObject var game: Game
+    @EnvironmentObject var game: MultiplayerGame
     @Environment(\.dismiss) var dismiss
     
     @State private var guessText = ""
@@ -248,6 +248,6 @@ extension MultiplayerView {
 struct MultiplayerView_Previews: PreviewProvider {
     static var previews: some View {
         MultiplayerView()
-            .environmentObject(Game(withSampleData: true))
+            .environmentObject(MultiplayerGame(withSampleData: true))
     }
 }

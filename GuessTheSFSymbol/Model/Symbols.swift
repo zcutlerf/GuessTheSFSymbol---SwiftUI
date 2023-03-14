@@ -55,6 +55,7 @@ class Symbols {
                 let data = try String(contentsOfFile: path, encoding: .utf8)
                 components = data.components(separatedBy: .newlines)
                 components.removeAll(where: { $0.isEmpty })
+                components.sort()
             } catch {
                 print(error)
             }

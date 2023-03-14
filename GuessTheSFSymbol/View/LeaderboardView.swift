@@ -14,10 +14,6 @@ struct LeaderboardView: View {
     var timeLimit: TimeLimit
     var highScores: [HighScore]
     
-    var leaderboardTitle: String {
-        "Best \(timeLimit.pickerLabel) on \(difficulty.rawValue.capitalized)"
-    }
-    
     var body: some View {
         VStack {
             HStack {
@@ -33,7 +29,7 @@ struct LeaderboardView: View {
                 }
             }
             
-            Text(leaderboardTitle)
+            Text("Best \(timeLimit.pickerLabel) on \(difficulty.rawValue.capitalized)")
                 .font(.title)
                 .fontWeight(.semibold)
                 .foregroundColor(.accentColor)

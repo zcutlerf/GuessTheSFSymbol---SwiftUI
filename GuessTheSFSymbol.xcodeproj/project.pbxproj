@@ -21,6 +21,7 @@
 		5D41531F29C0B2F7008CD441 /* TimeLimitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D41531E29C0B2F7008CD441 /* TimeLimitTests.swift */; };
 		5D41532229C0B4E1008CD441 /* SingleplayerGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D41532129C0B4E1008CD441 /* SingleplayerGameTests.swift */; };
 		5D41532429C0C176008CD441 /* MultiplayerGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D41532329C0C176008CD441 /* MultiplayerGameTests.swift */; };
+		5D41532629C0DFC8008CD441 /* SingleplayerGame+Leaderboardable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D41532529C0DFC8008CD441 /* SingleplayerGame+Leaderboardable.swift */; };
 		5D8EA8E729A7EC2900A4EDAC /* SingleplayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8EA8E629A7EC2900A4EDAC /* SingleplayerView.swift */; };
 		5D8EA8E929A7F10600A4EDAC /* SymbolToGuessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8EA8E829A7F10600A4EDAC /* SymbolToGuessView.swift */; };
 		5DE7767029A69BB70024B8E8 /* GuessTheSFSymbolApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE7766F29A69BB70024B8E8 /* GuessTheSFSymbolApp.swift */; };
@@ -64,6 +65,7 @@
 		5D41531E29C0B2F7008CD441 /* TimeLimitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLimitTests.swift; sourceTree = "<group>"; };
 		5D41532129C0B4E1008CD441 /* SingleplayerGameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleplayerGameTests.swift; sourceTree = "<group>"; };
 		5D41532329C0C176008CD441 /* MultiplayerGameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiplayerGameTests.swift; sourceTree = "<group>"; };
+		5D41532529C0DFC8008CD441 /* SingleplayerGame+Leaderboardable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SingleplayerGame+Leaderboardable.swift"; sourceTree = "<group>"; };
 		5D8EA8E429A7B03300A4EDAC /* GuessTheSFSymbol.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GuessTheSFSymbol.entitlements; sourceTree = "<group>"; };
 		5D8EA8E529A7B4E400A4EDAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		5D8EA8E629A7EC2900A4EDAC /* SingleplayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleplayerView.swift; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 			isa = PBXGroup;
 			children = (
 				5D41529629BC0572008CD441 /* SingleplayerGame.swift */,
+				5D41532529C0DFC8008CD441 /* SingleplayerGame+Leaderboardable.swift */,
 				5DE7768029A69BFA0024B8E8 /* MultiplayerGame.swift */,
 				5DE7768329A69C170024B8E8 /* MultiplayerGame+GKLocalPlayerListener.swift */,
 				5DE7768529A69C230024B8E8 /* MultiplayerGame+GKMatchmakerViewControllerDelegate.swift */,
@@ -338,6 +341,7 @@
 				5DE7767029A69BB70024B8E8 /* GuessTheSFSymbolApp.swift in Sources */,
 				5D41529E29BCFCA2008CD441 /* HighScore.swift in Sources */,
 				5DE7768829A69C4E0024B8E8 /* Player.swift in Sources */,
+				5D41532629C0DFC8008CD441 /* SingleplayerGame+Leaderboardable.swift in Sources */,
 				5D4152A029BD04AE008CD441 /* LeaderboardView.swift in Sources */,
 				5DE7768B29A69C660024B8E8 /* Guess.swift in Sources */,
 				5D8EA8E729A7EC2900A4EDAC /* SingleplayerView.swift in Sources */,

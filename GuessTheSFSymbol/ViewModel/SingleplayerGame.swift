@@ -70,25 +70,7 @@ class SingleplayerGame: ObservableObject {
             do {
                 try await getHighScoresFromLeaderboard()
                 
-                if let myHighScore = myHighScore {
-                    if score > myHighScore.score {
-                        if let indexOfMyScore = highScores.firstIndex(where: { $0.displayName == myHighScore.displayName}) {
-                            
-                            highScores[indexOfMyScore] = HighScore(displayName: GKLocalPlayer.local.displayName, rank: 0, score: score, isNew: true)
-                        }
-                    }
-                } else {
-                    let myFirstScore = HighScore(displayName: GKLocalPlayer.local.displayName, rank: 0, score: score, isNew: true)
-                    highScores.append(myFirstScore)
-                }
-                
-                //re-sort, so highest scores are first
-                highScores.sort(by: { $0.score > $1.score })
-                
-                //re-rank scores
-                for index in 0..<highScores.count {
-                    highScores[index].rank = index + 1
-                }
+                checkForNewHighScore()
                 
                 leaderboardStatus = .succeeded
             } catch {
@@ -138,8 +120,34 @@ class SingleplayerGame: ObservableObject {
             highScores.append(newHighScore)
         }
         
-        highScores.sort(by: { $0.rank < $1.rank })
+        sortAndRankHighScores()
         
         leaderboardStatus = .succeeded
+    }
+    
+    func checkForNewHighScore() {
+        if let myHighScore = myHighScore {
+            if score > myHighScore.score {
+                if let indexOfMyScore = highScores.firstIndex(where: { $0.displayName == myHighScore.displayName}) {
+                    
+                    highScores[indexOfMyScore] = HighScore(displayName: GKLocalPlayer.local.displayName, rank: 0, score: score, isNew: true)
+                }
+            }
+        } else {
+            let myFirstScore = HighScore(displayName: GKLocalPlayer.local.displayName, rank: 0, score: score, isNew: true)
+            highScores.append(myFirstScore)
+        }
+        
+        sortAndRankHighScores()
+    }
+    
+    func sortAndRankHighScores() {
+        //sort, so highest scores are first
+        highScores.sort(by: { $0.score > $1.score })
+        
+        //rank scores
+        for index in 0..<highScores.count {
+            highScores[index].rank = index + 1
+        }
     }
 }

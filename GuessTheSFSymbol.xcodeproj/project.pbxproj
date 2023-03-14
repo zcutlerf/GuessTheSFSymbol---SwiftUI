@@ -17,6 +17,7 @@
 		5D41531129C0A7D1008CD441 /* GuessTheSFSymbolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D41531029C0A7D1008CD441 /* GuessTheSFSymbolTests.swift */; };
 		5D41531829C0A7F6008CD441 /* PlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D41531729C0A7F6008CD441 /* PlayerTests.swift */; };
 		5D41531B29C0AB61008CD441 /* SymbolsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D41531A29C0AB61008CD441 /* SymbolsTests.swift */; };
+		5D41531D29C0AF6F008CD441 /* DifficultyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D41531C29C0AF6F008CD441 /* DifficultyTests.swift */; };
 		5D8EA8E729A7EC2900A4EDAC /* SingleplayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8EA8E629A7EC2900A4EDAC /* SingleplayerView.swift */; };
 		5D8EA8E929A7F10600A4EDAC /* SymbolToGuessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8EA8E829A7F10600A4EDAC /* SymbolToGuessView.swift */; };
 		5DE7767029A69BB70024B8E8 /* GuessTheSFSymbolApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE7766F29A69BB70024B8E8 /* GuessTheSFSymbolApp.swift */; };
@@ -56,6 +57,7 @@
 		5D41531029C0A7D1008CD441 /* GuessTheSFSymbolTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessTheSFSymbolTests.swift; sourceTree = "<group>"; };
 		5D41531729C0A7F6008CD441 /* PlayerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerTests.swift; sourceTree = "<group>"; };
 		5D41531A29C0AB61008CD441 /* SymbolsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolsTests.swift; sourceTree = "<group>"; };
+		5D41531C29C0AF6F008CD441 /* DifficultyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DifficultyTests.swift; sourceTree = "<group>"; };
 		5D8EA8E429A7B03300A4EDAC /* GuessTheSFSymbol.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GuessTheSFSymbol.entitlements; sourceTree = "<group>"; };
 		5D8EA8E529A7B4E400A4EDAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		5D8EA8E629A7EC2900A4EDAC /* SingleplayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleplayerView.swift; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 			children = (
 				5D41531729C0A7F6008CD441 /* PlayerTests.swift */,
 				5D41531A29C0AB61008CD441 /* SymbolsTests.swift */,
+				5D41531C29C0AF6F008CD441 /* DifficultyTests.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -298,6 +301,7 @@
 			files = (
 				5D41531829C0A7F6008CD441 /* PlayerTests.swift in Sources */,
 				5D41531129C0A7D1008CD441 /* GuessTheSFSymbolTests.swift in Sources */,
+				5D41531D29C0AF6F008CD441 /* DifficultyTests.swift in Sources */,
 				5D41531B29C0AB61008CD441 /* SymbolsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -15,6 +15,8 @@ struct ContentView: View {
     @State private var symbolPreview: String = "tortoise"
     let timer = Timer.publish(every: 0.3, on: .main, in: .common).autoconnect()
     
+    @State private var isShowingHowToPlay = false
+    
     var body: some View {
         NavigationView {
             VStack(spacing: 25.0) {
@@ -36,7 +38,7 @@ struct ContentView: View {
                 Spacer()
                 
                 Button {
-                    //TODO: Show how to play screen
+                    isShowingHowToPlay.toggle()
                 } label: {
                     Text("How to Play")
                         .font(.title)
@@ -66,6 +68,9 @@ struct ContentView: View {
                     game.authenticateLocalPlayer()
                 }
             }
+            .sheet(isPresented: $isShowingHowToPlay, content: {
+                HowToPlayView()
+            })
             .fullScreenCover(isPresented: $isPlayingSolo) {
                 SingleplayerView()
             }

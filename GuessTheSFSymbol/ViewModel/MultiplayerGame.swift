@@ -15,13 +15,6 @@ import GameKit
     @Published var isPlayingGame = false
     @Published var currentMatch: GKMatch?
     @Published var opponents: [Player] = []
-    var hasOpponents: Bool {
-        if opponents.count == 0 {
-            return false
-        } else {
-            return true
-        }
-    }
     
     @Published var numberOfRounds = 10
     @Published var round: Int = 0
@@ -174,6 +167,27 @@ import GameKit
         }
     }
     
+    var guessedCorrectly: Bool? {
+        guard let localPlayer = localPlayer else {
+            return nil
+        }
+        
+        // If the player skips, return that they did not guess correctly.
+        if localPlayer.guesses.contains(where: { $0.round == round && $0.answer == .skip }) {
+            return false
+        }
+        
+        if roundIsFinished {
+            if localPlayer.correctAnswers.contains(where: { $0.round == round }) {
+                return true
+            } else {
+                return false
+            }
+        } else {
+            return nil
+        }
+    }
+    
     /// Send new guess to all opponents.
     func sendNewGuess(_ guess: Guess) {
         do {
@@ -244,6 +258,33 @@ import GameKit
         })
         
         return allPlayers.count == playersWhoHaveSkipped.count
+    }
+    
+    var hasOpponents: Bool {
+        if opponents.count == 0 {
+            return false
+        } else {
+            return true
+        }
+    }
+    
+    var allPlayers: [Player] {
+        var allPlayers = opponents
+        if let localPlayer = localPlayer {
+            allPlayers.append(localPlayer)
+        }
+        
+        return allPlayers
+    }
+    
+    var winningPlayers: [Player] {
+        let sortedPlayers = allPlayers.sorted(by: { $0.score > $1.score })
+        
+        guard let topScore = sortedPlayers.first?.score else {
+            return []
+        }
+        
+        return sortedPlayers.filter({ $0.score == topScore })
     }
     
     var gameIsOver: Bool {

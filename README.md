@@ -9,7 +9,9 @@ Some of these symbol names are easy, and some are hard. Some examples:
 
 But they often follow a pattern that can be learned and guessed!
 
-**This game has multiple modes.**
+---
+
+This game has multiple modes.
 
 ### Single Player Mode
 * Player guesses the names of SF Symbols as fast as possible, racing against the clock.
@@ -22,14 +24,14 @@ But they often follow a pattern that can be learned and guessed!
 ### Technologies Used
 * **SwiftUI**, using **MVVM** with a **Service** layer
 * Some fun Swift stuff
- * Modern concurrency with **async / await**
- * A **singleton**, even though I know they are controversial 🫢
- * Custom **protocols** to organize my growing ViewModels
- * Unit Tests! So fun...
+    * Modern concurrency with **async / await**
+    * A **singleton**, even though I know they are controversial 🫢
+    * Custom **protocols** to organize my growing ViewModels
+    * Unit Tests! So fun...
 * **GameKit** (Game Center)
- * **Leaderboards** for Single Player mode
- * Multi Player mode is a real-time **GKMatch**
+    * **Leaderboards** for Single Player mode
+    * Multi Player mode is a real-time **GKMatch**
 * And I'm always thinking about accessibility!
- * Dark mode
- * Text resizes to fit user's preference
- * Colors with high-contrast available
+    * Dark mode
+    * Text resizes to fit user's preference
+    * Colors with high-contrast available

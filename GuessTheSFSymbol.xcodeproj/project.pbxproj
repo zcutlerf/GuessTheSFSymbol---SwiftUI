@@ -14,6 +14,8 @@
 		5D41529929BC0D87008CD441 /* TimeLimit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D41529829BC0D87008CD441 /* TimeLimit.swift */; };
 		5D41529E29BCFCA2008CD441 /* HighScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D41529D29BCFCA2008CD441 /* HighScore.swift */; };
 		5D4152A029BD04AE008CD441 /* LeaderboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D41529F29BD04AE008CD441 /* LeaderboardView.swift */; };
+		5D41531129C0A7D1008CD441 /* GuessTheSFSymbolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D41531029C0A7D1008CD441 /* GuessTheSFSymbolTests.swift */; };
+		5D41531829C0A7F6008CD441 /* PlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D41531729C0A7F6008CD441 /* PlayerTests.swift */; };
 		5D8EA8E729A7EC2900A4EDAC /* SingleplayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8EA8E629A7EC2900A4EDAC /* SingleplayerView.swift */; };
 		5D8EA8E929A7F10600A4EDAC /* SymbolToGuessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8EA8E829A7F10600A4EDAC /* SymbolToGuessView.swift */; };
 		5DE7767029A69BB70024B8E8 /* GuessTheSFSymbolApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE7766F29A69BB70024B8E8 /* GuessTheSFSymbolApp.swift */; };
@@ -31,6 +33,16 @@
 		5DE7769129A6B4440024B8E8 /* SimpleSymbols.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5DE7769029A6B4440024B8E8 /* SimpleSymbols.txt */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		5D41531229C0A7D1008CD441 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5DE7766429A69BB70024B8E8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5DE7766B29A69BB70024B8E8;
+			remoteInfo = GuessTheSFSymbol;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		5D1080CA29B67F61005ED7FF /* SymbolComponents.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = SymbolComponents.txt; sourceTree = "<group>"; };
 		5D1080CC29B681C5005ED7FF /* AutocompleteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutocompleteView.swift; sourceTree = "<group>"; };
@@ -39,6 +51,9 @@
 		5D41529829BC0D87008CD441 /* TimeLimit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLimit.swift; sourceTree = "<group>"; };
 		5D41529D29BCFCA2008CD441 /* HighScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighScore.swift; sourceTree = "<group>"; };
 		5D41529F29BD04AE008CD441 /* LeaderboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardView.swift; sourceTree = "<group>"; };
+		5D41530E29C0A7D1008CD441 /* GuessTheSFSymbolTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GuessTheSFSymbolTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5D41531029C0A7D1008CD441 /* GuessTheSFSymbolTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessTheSFSymbolTests.swift; sourceTree = "<group>"; };
+		5D41531729C0A7F6008CD441 /* PlayerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerTests.swift; sourceTree = "<group>"; };
 		5D8EA8E429A7B03300A4EDAC /* GuessTheSFSymbol.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GuessTheSFSymbol.entitlements; sourceTree = "<group>"; };
 		5D8EA8E529A7B4E400A4EDAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		5D8EA8E629A7EC2900A4EDAC /* SingleplayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleplayerView.swift; sourceTree = "<group>"; };
@@ -60,6 +75,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		5D41530B29C0A7D1008CD441 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5DE7766929A69BB70024B8E8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -70,10 +92,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5D41530F29C0A7D1008CD441 /* GuessTheSFSymbolTests */ = {
+			isa = PBXGroup;
+			children = (
+				5D41531029C0A7D1008CD441 /* GuessTheSFSymbolTests.swift */,
+				5D41531929C0A7FC008CD441 /* Model */,
+			);
+			path = GuessTheSFSymbolTests;
+			sourceTree = "<group>";
+		};
+		5D41531929C0A7FC008CD441 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5D41531729C0A7F6008CD441 /* PlayerTests.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		5DE7766329A69BB70024B8E8 = {
 			isa = PBXGroup;
 			children = (
 				5DE7766E29A69BB70024B8E8 /* GuessTheSFSymbol */,
+				5D41530F29C0A7D1008CD441 /* GuessTheSFSymbolTests */,
 				5DE7766D29A69BB70024B8E8 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -82,6 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				5DE7766C29A69BB70024B8E8 /* GuessTheSFSymbol.app */,
+				5D41530E29C0A7D1008CD441 /* GuessTheSFSymbolTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -152,6 +193,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		5D41530D29C0A7D1008CD441 /* GuessTheSFSymbolTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5D41531429C0A7D1008CD441 /* Build configuration list for PBXNativeTarget "GuessTheSFSymbolTests" */;
+			buildPhases = (
+				5D41530A29C0A7D1008CD441 /* Sources */,
+				5D41530B29C0A7D1008CD441 /* Frameworks */,
+				5D41530C29C0A7D1008CD441 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5D41531329C0A7D1008CD441 /* PBXTargetDependency */,
+			);
+			name = GuessTheSFSymbolTests;
+			productName = GuessTheSFSymbolTests;
+			productReference = 5D41530E29C0A7D1008CD441 /* GuessTheSFSymbolTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		5DE7766B29A69BB70024B8E8 /* GuessTheSFSymbol */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5DE7767A29A69BB80024B8E8 /* Build configuration list for PBXNativeTarget "GuessTheSFSymbol" */;
@@ -179,6 +238,10 @@
 				LastSwiftUpdateCheck = 1420;
 				LastUpgradeCheck = 1420;
 				TargetAttributes = {
+					5D41530D29C0A7D1008CD441 = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = 5DE7766B29A69BB70024B8E8;
+					};
 					5DE7766B29A69BB70024B8E8 = {
 						CreatedOnToolsVersion = 14.2;
 					};
@@ -198,11 +261,19 @@
 			projectRoot = "";
 			targets = (
 				5DE7766B29A69BB70024B8E8 /* GuessTheSFSymbol */,
+				5D41530D29C0A7D1008CD441 /* GuessTheSFSymbolTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		5D41530C29C0A7D1008CD441 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5DE7766A29A69BB70024B8E8 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -218,6 +289,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		5D41530A29C0A7D1008CD441 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5D41531829C0A7F6008CD441 /* PlayerTests.swift in Sources */,
+				5D41531129C0A7D1008CD441 /* GuessTheSFSymbolTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5DE7766829A69BB70024B8E8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -244,7 +324,51 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		5D41531329C0A7D1008CD441 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5DE7766B29A69BB70024B8E8 /* GuessTheSFSymbol */;
+			targetProxy = 5D41531229C0A7D1008CD441 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		5D41531529C0A7D1008CD441 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 94AXJS8DQZ;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zcutlerf.GuessTheSFSymbolTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GuessTheSFSymbol.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/GuessTheSFSymbol";
+			};
+			name = Debug;
+		};
+		5D41531629C0A7D1008CD441 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 94AXJS8DQZ;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zcutlerf.GuessTheSFSymbolTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GuessTheSFSymbol.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/GuessTheSFSymbol";
+			};
+			name = Release;
+		};
 		5DE7767829A69BB80024B8E8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -432,6 +556,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		5D41531429C0A7D1008CD441 /* Build configuration list for PBXNativeTarget "GuessTheSFSymbolTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5D41531529C0A7D1008CD441 /* Debug */,
+				5D41531629C0A7D1008CD441 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		5DE7766729A69BB70024B8E8 /* Build configuration list for PBXProject "GuessTheSFSymbol" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

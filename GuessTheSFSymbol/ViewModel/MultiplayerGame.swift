@@ -106,9 +106,9 @@ import GameKit
     /// Loads an avatar for a specific opponent, and places it in the correct opponent's Player struct
     func loadAvatar(for player: GKPlayer) {
         Task {
-            let uiImage = try await player.loadPhoto(for: .small)
+            let image = try await MultiplayerService.loadPhoto(for: player, of: .small)
             if let index = opponents.firstIndex(where: { $0.gkPlayer.gamePlayerID == player.gamePlayerID }) {
-                opponents[index].avatar = Image(uiImage: uiImage)
+                opponents[index].avatar = image
             }
         }
     }

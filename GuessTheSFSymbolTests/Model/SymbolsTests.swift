@@ -61,4 +61,10 @@ final class SymbolsTests: XCTestCase {
         
         XCTAssertGreaterThan(mediumSymbols.count, easySymbols.count)
     }
+    
+    func testGenerateRoundSymbols() {
+        let roundSymbols = Symbols.shared.generateRoundSymbols(for: 5)
+        
+        XCTAssertEqual(roundSymbols.count, 5)
+    }
 }

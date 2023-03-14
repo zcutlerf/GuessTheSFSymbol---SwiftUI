@@ -14,33 +14,35 @@ import SwiftUI
 final class SingleplayerGameTests: XCTestCase {
     var game: SingleplayerGame!
     
-    override func setUp() {
-        super.setUp()
-        game = SingleplayerGame()
+    override func setUp() async throws {
+        game = await SingleplayerGame()
     }
     
-    override func tearDown() {
+    override func tearDown() async throws {
         game = nil
-        super.tearDown()
     }
     
-    func testStartGame() {
-        game.startGame()
+    func testStartGame() async throws {
+        await game.startGame()
         
-        XCTAssertEqual(game.isPlayingGame, true)
-    }
-    
-    func testGenerateNewSymbol() {
-        game.generateNewSymbol()
+        let isPlayingGame = await game.isPlayingGame
         
-        XCTAssertNotEqual(game.symbolToGuess, "")
+        XCTAssertEqual(isPlayingGame, true)
     }
     
-    func testLeaderboardID() {
-        XCTAssertEqual(game.leaderboardID, "solo60easy")
+    func testGenerateNewSymbol() async throws {
+        await game.generateNewSymbol()
+        let symbolToGuess = await game.symbolToGuess
+        
+        XCTAssertNotEqual(symbolToGuess, "")
     }
     
-    func testValidateExactGuess() {
+    func testLeaderboardID() async throws {
+        let leaderboardID = await game.leaderboardID
+        XCTAssertEqual(leaderboardID, "solo60easy")
+    }
+    
+    @MainActor func testValidateExactGuess() async throws {
         game.symbolToGuess = "circle.fill"
         
         let guess = "circle.fill"
@@ -49,7 +51,7 @@ final class SingleplayerGameTests: XCTestCase {
         XCTAssertTrue(isCorrect)
     }
     
-    func testValidateCapitalizedGuess() {
+    @MainActor func testValidateCapitalizedGuess() async throws {
         game.symbolToGuess = "circle.fill"
         
         let guess = "CIRCLE.FILL"
@@ -58,7 +60,7 @@ final class SingleplayerGameTests: XCTestCase {
         XCTAssertTrue(isCorrect)
     }
     
-    func testValidatePunctuatedGuess() {
+    @MainActor func testValidatePunctuatedGuess() async throws {
         game.symbolToGuess = "circle.fill"
         
         let guess = "circle.!!fill:)"
@@ -67,7 +69,7 @@ final class SingleplayerGameTests: XCTestCase {
         XCTAssertTrue(isCorrect)
     }
     
-    func testValidateNonPunctuatedGuess() {
+    @MainActor func testValidateNonPunctuatedGuess() async throws {
         game.symbolToGuess = "circle.fill"
         
         let guess = "circlefill"
@@ -76,7 +78,7 @@ final class SingleplayerGameTests: XCTestCase {
         XCTAssertTrue(isCorrect)
     }
     
-    func testIncorrectGuess() {
+    @MainActor func testIncorrectGuess() async throws {
         game.symbolToGuess = "circle.fill"
         
         let guess = "incorrect.guess"
@@ -85,7 +87,7 @@ final class SingleplayerGameTests: XCTestCase {
         XCTAssertFalse(isCorrect)
     }
     
-    func testSortAndRankHighScores() {
+    @MainActor func testSortAndRankHighScores() async throws {
         game.highScores = [
             HighScore(displayName: "Worst Player", rank: 4, score: 1, isNew: false),
             HighScore(displayName: "Best Player", rank: 5, score: 10, isNew: false),

@@ -16,42 +16,6 @@ struct MultiplayerView: View {
     @State private var isShowingErrorAlert = false
     @State private var alertMessage = ""
     
-    var allPlayers: [Player] {
-        var allPlayers = game.opponents
-        if let localPlayer = game.localPlayer {
-            allPlayers.append(localPlayer)
-        }
-        
-        return allPlayers
-    }
-    
-    var winningPlayer: Player? {
-        let sortedPlayers = allPlayers.sorted(by: { $0.score > $1.score })
-        
-        return sortedPlayers.first
-    }
-    
-    var guessedCorrectly: Bool? {
-        guard let localPlayer = game.localPlayer else {
-            return nil
-        }
-        
-        // If the player skips, return that they did not guess correctly.
-        if localPlayer.guesses.contains(where: { $0.round == game.round && $0.answer == .skip }) {
-            return false
-        }
-        
-        if game.roundIsFinished {
-            if localPlayer.correctAnswers.contains(where: { $0.round == game.round }) {
-                return true
-            } else {
-                return false
-            }
-        } else {
-            return nil
-        }
-    }
-    
     var body: some View {
         ScrollView {
             VStack {
@@ -211,28 +175,55 @@ extension MultiplayerView {
                 .progressViewStyle(.linear)
             
             if game.symbolsToGuess.indices.contains(game.round) {
-                SymbolToGuessView(symbolName: game.symbolsToGuess[game.round], guessText: $guessText, guessedCorrectly: guessedCorrectly)
+                SymbolToGuessView(symbolName: game.symbolsToGuess[game.round], guessText: $guessText, guessedCorrectly: game.guessedCorrectly)
             }
         }
     }
     
     var gameoverView: some View {
         VStack {
-            if let winningPlayer = winningPlayer {
-                winningPlayer.avatar
+            if game.winningPlayers.count == 1 {
+                game.winningPlayers[0].avatar
                     .resizable()
                     .scaledToFit()
                     .clipShape(Circle())
                     .padding(.horizontal, 60.0)
                 
-                Text("\(winningPlayer.gkPlayer.displayName) wins!")
+                Text("\(game.winningPlayers[0].gkPlayer.displayName) wins!")
                     .font(.title)
                     .fontWeight(.medium)
                     .foregroundColor(.accentColor)
                 
-                Text("Score: \(winningPlayer.score.description)")
+                Text("Score: \(game.winningPlayers[0].score.description)")
                     .font(.title3)
                     .fontWeight(.bold)
+            } else if game.winningPlayers.count > 1 {
+                Text("It's a tie!")
+                    .font(.title)
+                    .fontWeight(.medium)
+                    .foregroundColor(.accentColor)
+                
+                Text("Score: \(game.winningPlayers[0].score.description)")
+                    .font(.title3)
+                    .fontWeight(.bold)
+                
+                HStack {
+                    ForEach(game.winningPlayers) { player in
+                        VStack {
+                            player.avatar
+                                .resizable()
+                                .scaledToFit()
+                                .clipShape(Circle())
+                            
+                            Text(player.gkPlayer.displayName)
+                                .font(.title3)
+                                .fontWeight(.medium)
+                                .foregroundColor(.accentColor)
+                                .multilineTextAlignment(.center)
+                        }
+                        .padding()
+                    }
+                }
             }
             
             Button(role: .destructive) {

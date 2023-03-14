@@ -76,6 +76,7 @@
 		5D8EA8E829A7F10600A4EDAC /* SymbolToGuessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolToGuessView.swift; sourceTree = "<group>"; };
 		5DCD7D1229C0F9EF004A4B7F /* LeaderboardService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardService.swift; sourceTree = "<group>"; };
 		5DCD7D1529C10545004A4B7F /* MultiplayerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiplayerService.swift; sourceTree = "<group>"; };
+		5DCD7D1729C10B46004A4B7F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		5DE7766C29A69BB70024B8E8 /* GuessTheSFSymbol.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GuessTheSFSymbol.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DE7766F29A69BB70024B8E8 /* GuessTheSFSymbolApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessTheSFSymbolApp.swift; sourceTree = "<group>"; };
 		5DE7767129A69BB70024B8E8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -153,6 +154,7 @@
 		5DE7766329A69BB70024B8E8 = {
 			isa = PBXGroup;
 			children = (
+				5DCD7D1729C10B46004A4B7F /* README.md */,
 				5DE7766E29A69BB70024B8E8 /* GuessTheSFSymbol */,
 				5D41530F29C0A7D1008CD441 /* GuessTheSFSymbolTests */,
 				5DE7766D29A69BB70024B8E8 /* Products */,

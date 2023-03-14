@@ -84,7 +84,7 @@ extension SingleplayerGame: Leaderboardable {
         
         Task {
             do {
-                try await GKLeaderboard.submitScore(score, context: 0, player: GKLocalPlayer.local, leaderboardIDs: [leaderboardID])
+                try await LeaderboardService.submitScore(score, context: 0, player: GKLocalPlayer.local, leaderboardIDs: [leaderboardID])
             } catch {
                 print("Error sending new score to leaderboard: \(error.localizedDescription)")
             }
@@ -96,13 +96,13 @@ extension SingleplayerGame: Leaderboardable {
             return
         }
         
-        let leaderboards = try await GKLeaderboard.loadLeaderboards(IDs: [leaderboardID])
+        let leaderboards = try await LeaderboardService.loadLeaderboards(IDs: [leaderboardID])
         
         guard let leaderboard = leaderboards.first else {
             return
         }
         
-        let entries = try await leaderboard.loadEntries(for: .global, timeScope: .allTime, range: NSRange(1...10))
+        let entries = try await LeaderboardService.loadEntries(in: leaderboard, for: .global, timeScope: .allTime, range: NSRange(1...10))
         
         for scoreEntry in entries.1 {
             let newHighScore = HighScore(displayName: scoreEntry.player.displayName, rank: scoreEntry.rank, score: scoreEntry.score, isNew: false)

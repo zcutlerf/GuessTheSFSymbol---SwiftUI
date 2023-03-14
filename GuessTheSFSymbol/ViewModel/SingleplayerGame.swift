@@ -7,7 +7,7 @@
 
 import GameKit
 
-class SingleplayerGame: ObservableObject {
+@MainActor class SingleplayerGame: ObservableObject {
     @Published var isPlayingGame = false
     @Published var selectedDifficulty: Difficulty = .easy
     @Published var timeLimit: TimeLimit = .oneMinute

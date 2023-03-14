@@ -57,6 +57,7 @@ struct HowToPlayView: View {
                             .fontWeight(.medium)
                         Label("rectangle.and.arrow.up.right.and.arrow.down.left.slash", systemImage: "rectangle.and.arrow.up.right.and.arrow.down.left.slash")
                     }
+                    .imageScale(.medium)
                     
                     Spacer()
                 }
@@ -82,7 +83,7 @@ struct HowToPlayView: View {
                             .font(.title2)
                             .fontWeight(.semibold)
                         
-                        Text("Race against the clock to guess as many symbol names as possible, and ")
+                        Text("Race against the clock to guess as many symbol names as possible! See if you can beat those other speedy designers on the leaderboards.")
                         
                         Spacer(minLength: 10.0)
                         
@@ -108,11 +109,11 @@ extension HowToPlayView {
             HStack(spacing: 2.0) {
                 Image(systemName: "heart.fill")
                     .font(.title3.bold())
-                    .foregroundColor(.cyan)
+                    .foregroundColor(Color(UIColor.cyan))
                     .rotation3DEffect(Angle(degrees: 45.0), axis: (-30.0, 60.0, -30.0))
                 Image(systemName: "star.fill")
                     .font(.title3.bold())
-                    .foregroundColor(.blue)
+                    .foregroundColor(Color(.systemBlue))
                     .rotation3DEffect(Angle(degrees: -45.0), axis: (-30.0, 60.0, -30.0))
             }
             
@@ -121,7 +122,7 @@ extension HowToPlayView {
             
             Image(systemName: "character")
                 .font(.title3.bold())
-                .foregroundColor(.green)
+                .foregroundColor(Color(UIColor.green))
                 .rotation3DEffect(Angle(degrees: -45.0), axis: (-30.0, 0.0, 0.0))
         }
         .padding(10)

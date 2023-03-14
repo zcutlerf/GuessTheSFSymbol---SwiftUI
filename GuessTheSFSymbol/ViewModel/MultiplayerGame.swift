@@ -8,7 +8,7 @@
 import SwiftUI
 import GameKit
 
-@MainActor class MultiplayerGame: NSObject, ObservableObject, GKMatchDelegate, GKLocalPlayerListener, GKMatchmakerViewControllerDelegate {
+@MainActor class MultiplayerGame: NSObject, ObservableObject {
     @Published var localPlayer: Player?
     @Published var isAuthenticated = false
     

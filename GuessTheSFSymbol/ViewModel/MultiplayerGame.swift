@@ -23,10 +23,7 @@ import GameKit
         }
     }
     
-    @Published var minPlayers = 2
-    @Published var maxPlayers = 4
     @Published var numberOfRounds = 10
-    
     @Published var round: Int = 0
     @Published var roundIsFinished = false
     @Published var symbolsToGuess: [String] = []

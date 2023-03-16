@@ -66,6 +66,7 @@ struct SingleplayerView: View {
     
     func skip() {
         isSkipping = true
+        game.skippedSymbols.append(game.symbolToGuess)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             guessText = ""
@@ -248,6 +249,22 @@ extension SingleplayerView {
                     }
                 } header: {
                     Text("Symbols Guessed Correctly")
+                }
+                
+                Section {
+                    ForEach(game.skippedSymbols, id: \.self) { skippedSymbol in
+                        HStack {
+                            Text(skippedSymbol)
+                                .font(.title3)
+                            
+                            Spacer()
+                            
+                            Image(systemName: skippedSymbol)
+                                .imageScale(.large)
+                        }
+                    }
+                } header: {
+                    Text("Symbols Skipped")
                 }
             }
             

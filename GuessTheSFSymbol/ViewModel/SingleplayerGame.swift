@@ -15,6 +15,7 @@ import GameKit
     @Published var symbolToGuess = ""
     @Published var score = 0
     @Published var correctGuesses: [String] = []
+    @Published var skippedSymbols: [String] = []
     
     @Published var leaderboardStatus = LeaderboardStatus.notStarted
     @Published var highScores: [HighScore] = []

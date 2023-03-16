@@ -26,6 +26,22 @@ struct Player: Identifiable {
     }
     
     var score: Int {
-        correctAnswers.count
+        var score = 0
+        
+        for correctAnswer in correctAnswers {
+            switch correctAnswer.answer {
+            case .correct(let answer):
+                score += numberOfComponents(from: answer)
+            case .skip:
+                break
+            }
+        }
+        
+        return score
+    }
+    
+    func numberOfComponents(from correctAnswer: String) -> Int {
+        let components = correctAnswer.components(separatedBy: ".")
+        return components.count
     }
 }

@@ -35,12 +35,17 @@ import GameKit
         
         if guessCleaned == correctAnswerCleaned {
             correctGuesses.append(symbolToGuess)
-            score += 1
+            score += numberOfComponents()
             generateNewSymbol()
             
             return true
         }
         
         return false
+    }
+    
+    func numberOfComponents() -> Int {
+        let components = symbolToGuess.components(separatedBy: ".")
+        return components.count
     }
 }

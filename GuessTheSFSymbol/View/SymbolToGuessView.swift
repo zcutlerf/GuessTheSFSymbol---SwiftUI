@@ -41,7 +41,7 @@ struct SymbolToGuessView: View {
                             .foregroundColor(.green)
                             .imageScale(.large)
                     } else {
-                        Image(systemName: "xmark.seal")
+                        Image(systemName: "arrowshape.zigzag.forward")
                             .foregroundColor(.red)
                             .imageScale(.large)
                     }

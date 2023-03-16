@@ -66,7 +66,7 @@ struct HowToPlayView: View {
                 
                 HStack {
                     VStack(alignment: .leading) {
-                        Text("All you have to do is look at the symbol, and type in the right name! Easy enough, right?")
+                        Text("All you have to do is look at the symbol, and type in the right name! Easy enough, right? You'll earn more points for guessing longer symbol names.")
                             .font(.title3)
                             .fontWeight(.medium)
                             .foregroundColor(.accentColor)

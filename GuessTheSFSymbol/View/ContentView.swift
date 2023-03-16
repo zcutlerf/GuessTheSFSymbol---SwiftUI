@@ -20,20 +20,7 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             VStack(spacing: 25.0) {
-                HStack(spacing: 20.0) {
-                    Image(systemName: "questionmark")
-                        .font(.title.weight(.bold))
-                        .foregroundColor(.accentColor)
-                    
-                    Image(systemName: symbolPreview)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 180.0, height: 100.0)
-                    
-                    Image(systemName: "questionmark")
-                        .font(.title.weight(.bold))
-                        .foregroundColor(.accentColor)
-                }
+                symbolAnimationView
                 
                 Spacer()
                 
@@ -84,6 +71,39 @@ struct ContentView: View {
                 symbolPreview = Symbols.shared.randomSymbol(from: .hard)
             })
             .navigationTitle("SFGuess")
+            .toolbar {
+                leaderboardsToolbarItem
+            }
+        }
+    }
+}
+
+extension ContentView {
+    private var symbolAnimationView: some View {
+        HStack(spacing: 20.0) {
+            Image(systemName: "questionmark")
+                .font(.title.weight(.bold))
+                .foregroundColor(.accentColor)
+            
+            Image(systemName: symbolPreview)
+                .resizable()
+                .scaledToFit()
+                .frame(width: 180.0, height: 100.0)
+            
+            Image(systemName: "questionmark")
+                .font(.title.weight(.bold))
+                .foregroundColor(.accentColor)
+        }
+    }
+    
+    private var leaderboardsToolbarItem: some ToolbarContent {
+        ToolbarItem(placement: .navigationBarTrailing) {
+            Button {
+                game.presentGameCenterVCLeaderboards()
+            } label: {
+                Label("Leaderboards", systemImage: "trophy.fill")
+            }
+            .disabled(!game.isAuthenticated)
         }
     }
 }

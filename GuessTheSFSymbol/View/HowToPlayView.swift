@@ -10,6 +10,16 @@ import SwiftUI
 struct HowToPlayView: View {
     @Environment(\.dismiss) var dismiss
     
+    var attributedString: AttributedString {
+        var attributedString: AttributedString = ""
+        do {
+            attributedString = try AttributedString(markdown: "As an elite app developer, you must undoubtedly be familiar with [SF Symbols.](https://developer.apple.com/sf-symbols/)")
+        } catch {
+        attributedString = "As an elite app developer, you must undoubtedly be familiar with SF Symbols."
+        }
+        return attributedString
+    }
+    
     var body: some View {
         ScrollView {
             VStack {
@@ -31,7 +41,7 @@ struct HowToPlayView: View {
                     .foregroundColor(.green)
                 
                 HStack {
-                    Text("As an elite app developer, you must undoubtedly be familiar with SF Symbols.")
+                    Text(attributedString)
                     
                     Spacer()
                     

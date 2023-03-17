@@ -20,6 +20,13 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             VStack(spacing: 25.0) {
+                Image("Logo")
+                    .resizable()
+                    .scaledToFit()
+                    .padding(.horizontal)
+                    .accessibilityRemoveTraits(.isImage)
+                    .accessibilityLabel("S F Guess")
+                
                 symbolAnimationView
                 
                 Spacer()
@@ -70,9 +77,7 @@ struct ContentView: View {
             .onReceive(timer, perform: { _ in
                 symbolPreview = Symbols.shared.randomSymbol(from: .hard)
             })
-//            .navigationTitle("SFGuess")
             .toolbar {
-                navigationBarTitle
                 leaderboardsToolbarItem
             }
         }
@@ -94,25 +99,6 @@ extension ContentView {
             Image(systemName: "questionmark")
                 .font(.title.weight(.bold))
                 .foregroundColor(.blue)
-        }
-    }
-    
-    private var navigationBarTitle: some ToolbarContent {
-        ToolbarItem(placement: .principal) {
-            HStack(spacing: 2.0) {
-                Image(systemName: "s.circle.fill")
-                    .foregroundColor(.cyan)
-                Image(systemName: "f.cursive")
-                    .foregroundColor(.blue)
-                Image(systemName: "g.square.fill")
-                Image(systemName: "arrow.uturn.up")
-                Image(systemName: "e.circle")
-                Image(systemName: "scribble")
-                Image(systemName: "s.circle")
-            }
-            .foregroundColor(.green)
-            .font(.title2.weight(.medium))
-            .accessibilityLabel("S F Guess")
         }
     }
     

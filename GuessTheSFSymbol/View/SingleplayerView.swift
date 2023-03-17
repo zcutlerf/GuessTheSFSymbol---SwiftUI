@@ -23,7 +23,6 @@ struct SingleplayerView: View {
     @State private var isShowingLeaderboardSheet = false
     
     var body: some View {
-        
         VStack {
             if !game.isPlayingGame {
                 gameOptionsView
@@ -61,6 +60,9 @@ struct SingleplayerView: View {
                     isShowingSuccessIcon = false
                 }
             }
+        }
+        .task {
+            timeLeft = game.timeLimit.seconds
         }
     }
     
@@ -167,7 +169,7 @@ extension SingleplayerView {
                 Spacer()
             }
             .font(.title.weight(.bold))
-            .foregroundColor(.accentColor)
+            .foregroundColor(.green)
             
             SymbolToGuessView(symbolName: game.symbolToGuess, guessText: $guessText, guessedCorrectly: isSkipping ? false : nil)
                 .onChange(of: guessText) { newValue in
@@ -197,7 +199,7 @@ extension SingleplayerView {
             Text("Time's Up!")
                 .font(.largeTitle)
                 .fontWeight(.medium)
-                .foregroundColor(.accentColor)
+                .foregroundColor(.blue)
             
             Text("Score: \(game.score)")
                 .font(.title)

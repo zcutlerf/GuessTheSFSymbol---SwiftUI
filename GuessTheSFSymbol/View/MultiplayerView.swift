@@ -221,7 +221,7 @@ extension MultiplayerView {
                 Text("\(game.winningPlayers[0].gkPlayer.displayName) wins!")
                     .font(.title)
                     .fontWeight(.medium)
-                    .foregroundColor(.accentColor)
+                    .foregroundColor(.green)
                 
                 Text("Score: \(game.winningPlayers[0].score.description)")
                     .font(.title3)
@@ -230,7 +230,7 @@ extension MultiplayerView {
                 Text("It's a tie!")
                     .font(.title)
                     .fontWeight(.medium)
-                    .foregroundColor(.accentColor)
+                    .foregroundColor(.green)
                 
                 Text("Score: \(game.winningPlayers[0].score.description)")
                     .font(.title3)
@@ -247,7 +247,7 @@ extension MultiplayerView {
                             Text(player.gkPlayer.displayName)
                                 .font(.title3)
                                 .fontWeight(.medium)
-                                .foregroundColor(.accentColor)
+                                .foregroundColor(.green)
                                 .multilineTextAlignment(.center)
                         }
                         .padding()

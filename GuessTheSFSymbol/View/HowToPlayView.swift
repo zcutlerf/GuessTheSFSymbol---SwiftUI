@@ -28,7 +28,7 @@ struct HowToPlayView: View {
                 Text("How to Play")
                     .font(.largeTitle)
                     .fontWeight(.medium)
-                    .foregroundColor(.accentColor)
+                    .foregroundColor(.green)
                 
                 HStack {
                     Text("As an elite app developer, you must undoubtedly be familiar with SF Symbols.")
@@ -69,7 +69,7 @@ struct HowToPlayView: View {
                         Text("All you have to do is look at the symbol, and type in the right name! Easy enough, right?")
                             .font(.title3)
                             .fontWeight(.medium)
-                            .foregroundColor(.accentColor)
+                            .foregroundColor(.blue)
                         
                         Text("You'll earn more points for guessing longer symbol names.")
                             .font(.title3)

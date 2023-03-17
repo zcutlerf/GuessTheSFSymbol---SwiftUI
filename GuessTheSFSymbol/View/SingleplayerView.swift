@@ -82,50 +82,71 @@ struct SingleplayerView: View {
 
 extension SingleplayerView {
     var gameOptionsView: some View {
-        VStack(spacing: 25.0) {
-            VStack {
-                Text("Difficulty:")
-                    .font(.title3)
-                    .fontWeight(.semibold)
-                Picker("Difficulty", selection: $game.selectedDifficulty) {
-                    ForEach(Difficulty.allCases, id: \.self) { difficulty in
-                        Text(difficulty.rawValue.capitalized)
-                    }
+        List {
+            HStack {
+                Spacer()
+                
+                Text("Single Player")
+                    .font(.largeTitle)
+                    .fontWeight(.medium)
+                    .foregroundColor(.green)
+                
+                Spacer()
+            }
+            .listRowBackground(EmptyView())
+            .listRowSeparator(.hidden)
+            
+            Picker("Difficulty", selection: $game.selectedDifficulty) {
+                ForEach(Difficulty.allCases, id: \.self) { difficulty in
+                    Text(difficulty.rawValue.capitalized)
                 }
             }
+            .pickerStyle(.inline)
             
-            VStack {
-                Text("Time Limit:")
-                    .font(.title3)
-                    .fontWeight(.semibold)
-                Picker("Time Limit", selection: $game.timeLimit) {
-                    ForEach(TimeLimit.allCases, id: \.pickerLabel) { timeLimit in
-                        Text(timeLimit.pickerLabel)
-                            .tag(timeLimit)
-                    }
-                }
-                .onChange(of: game.timeLimit) { newValue in
-                    timeLeft = game.timeLimit.seconds
+            Picker("Time Limit", selection: $game.timeLimit) {
+                ForEach(TimeLimit.allCases, id: \.pickerLabel) { timeLimit in
+                    Text(timeLimit.pickerLabel)
+                        .tag(timeLimit)
                 }
             }
-            
-            Button {
-                game.startGame()
-            } label: {
-                Text("Play!")
-                    .font(.title)
-                    .fontWeight(.bold)
+            .pickerStyle(.inline)
+            .onChange(of: game.timeLimit) { newValue in
+                timeLeft = game.timeLimit.seconds
             }
-            .buttonStyle(.borderedProminent)
             
-            Button(role: .destructive) {
-                dismiss()
-            } label: {
-                Text("Quit")
-                    .font(.title2)
-                    .fontWeight(.semibold)
+            HStack {
+                Spacer()
+                
+                Button {
+                    game.startGame()
+                } label: {
+                    Text("Play!")
+                        .font(.title)
+                        .fontWeight(.bold)
+                }
+                .buttonStyle(.borderedProminent)
+                
+                Spacer()
             }
-            .buttonStyle(.bordered)
+            .listRowBackground(EmptyView())
+            .listRowSeparator(.hidden)
+            
+            HStack {
+                Spacer()
+                
+                Button(role: .destructive) {
+                    dismiss()
+                } label: {
+                    Text("Quit")
+                        .font(.title2)
+                        .fontWeight(.semibold)
+                }
+                .buttonStyle(.bordered)
+                
+                Spacer()
+            }
+            .listRowBackground(EmptyView())
+            .listRowSeparator(.hidden)
         }
     }
     

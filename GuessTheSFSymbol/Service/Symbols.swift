@@ -10,21 +10,28 @@ import Foundation
 class Symbols {
     static let shared = Symbols()
     
+    /// A select set of 1-component symbols.
     var practiceSymbolNames: [String] = []
+    /// All symbols that are 1-2 components.
     var easySymbolNames: [String] = []
+    /// All symbols that are 2-4 components, with some symbols that are 1 component.
     var mediumSymbolNames: [String] = []
+    /// All symbols that are 3+ components, with some symbols that are 2 components.
     var hardSymbolNames: [String] = []
+    /// All symbols.
+    var multiplayerSymbolNames: [String] = []
     
+    /// All symbols, separated into individual components (words).
     var components: [String] = []
     
     private init() {
         if let path = Bundle.main.path(forResource: "SFSymbols", ofType: "txt") {
             do {
                 let data = try String(contentsOfFile: path, encoding: .utf8)
-                hardSymbolNames = data.components(separatedBy: .newlines)
-                hardSymbolNames.removeAll(where: { $0.isEmpty })
+                multiplayerSymbolNames = data.components(separatedBy: .newlines)
+                multiplayerSymbolNames.removeAll(where: { $0.isEmpty })
                 
-                for name in hardSymbolNames {
+                for name in multiplayerSymbolNames {
                     let numberOfComponents = name.components(separatedBy: ".").count
                     
                     if numberOfComponents <= 2 {
@@ -32,7 +39,15 @@ class Symbols {
                     }
                     
                     if numberOfComponents <= 4 {
-                        mediumSymbolNames.append(name)
+                        if numberOfComponents != 1 || Bool.random() {
+                            mediumSymbolNames.append(name)
+                        }
+                    }
+                    
+                    if numberOfComponents >= 2 {
+                        if numberOfComponents != 2 || Int.random(in: 1...3) == 1 {
+                            hardSymbolNames.append(name)
+                        }
                     }
                 }
             } catch {
@@ -62,10 +77,11 @@ class Symbols {
         }
     }
     
-    func generateRoundSymbols(for count: Int) -> [String] {
+    func generateMultiplayerRoundSymbols(for count: Int) -> [String] {
         var selectedSymbols: [String] = []
         for _ in 0..<count {
-            let newSymbol = randomSymbol(from: .hard)
+            var newSymbol = multiplayerSymbolNames.randomElement() ?? "person"
+            newSymbol.removeAll(where: { $0.isWhitespace || $0.isNewline })
             selectedSymbols.append(newSymbol)
         }
         

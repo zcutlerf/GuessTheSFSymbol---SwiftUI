@@ -44,13 +44,13 @@ final class SymbolsTests: XCTestCase {
         XCTAssertGreaterThan(hardSymbols.count, mediumSymbols.count)
     }
     
-    func testEasySymbolsContainedWithinHardSymbols() {
-        let hardSymbols = Symbols.shared.hardSymbolNames
+    func testEasySymbolsContainedWithinMultiplayerSymbols() {
+        let multiplayerSymbols = Symbols.shared.multiplayerSymbolNames
         let easySymbols = Symbols.shared.easySymbolNames
         
         for symbol in easySymbols {
-            if !hardSymbols.contains(symbol) {
-                XCTFail("Hard symbols does not have \(symbol), but easy symbols does.")
+            if !multiplayerSymbols.contains(symbol) {
+                XCTFail("Multiplayer symbols does not have \(symbol), but easy symbols does.")
             }
         }
     }
@@ -63,7 +63,7 @@ final class SymbolsTests: XCTestCase {
     }
     
     func testGenerateRoundSymbols() {
-        let roundSymbols = Symbols.shared.generateRoundSymbols(for: 5)
+        let roundSymbols = Symbols.shared.generateMultiplayerRoundSymbols(for: 5)
         
         XCTAssertEqual(roundSymbols.count, 5)
     }

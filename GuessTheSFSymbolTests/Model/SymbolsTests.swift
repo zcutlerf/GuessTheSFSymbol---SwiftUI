@@ -19,6 +19,20 @@ final class SymbolsTests: XCTestCase {
         XCTAssertNotEqual(practiceSymbolsCount, 0)
     }
     
+    func testEasySymbolsNotEmpty() {
+        let easySymbols = Symbols.shared.easySymbolNames
+        let easySymbolsCount = easySymbols.count
+        
+        XCTAssertNotEqual(easySymbolsCount, 0)
+    }
+    
+    func testMediumSymbolsNotEmpty() {
+        let mediumSymbols = Symbols.shared.mediumSymbolNames
+        let mediumSymbolsCount = mediumSymbols.count
+        
+        XCTAssertNotEqual(mediumSymbolsCount, 0)
+    }
+    
     func testHardSymbolsNotEmpty() {
         let hardSymbols = Symbols.shared.hardSymbolNames
         let hardSymbolsCount = hardSymbols.count
@@ -26,22 +40,22 @@ final class SymbolsTests: XCTestCase {
         XCTAssertNotEqual(hardSymbolsCount, 0)
     }
     
-    func testMediumSymbolsContainedWithinHardSymbols() {
-        let hardSymbols = Symbols.shared.hardSymbolNames
+    func testMultiplayerSymbolsNotEmpty() {
+        let multiplayerSymbols = Symbols.shared.multiplayerSymbolNames
+        let multiplayerSymbolsCount = multiplayerSymbols.count
+        
+        XCTAssertNotEqual(multiplayerSymbolsCount, 0)
+    }
+    
+    func testMediumSymbolsContainedWithinMultiplayerSymbols() {
+        let hardSymbols = Symbols.shared.multiplayerSymbolNames
         let mediumSymbols = Symbols.shared.mediumSymbolNames
         
         for symbol in mediumSymbols {
             if !hardSymbols.contains(symbol) {
-                XCTFail("Hard symbols does not have \(symbol), but medium symbols does.")
+                XCTFail("Multiplayer symbols does not have \(symbol), but medium symbols does.")
             }
         }
-    }
-    
-    func testMoreHardSymbolsThanMediumSymbols() {
-        let hardSymbols = Symbols.shared.hardSymbolNames
-        let mediumSymbols = Symbols.shared.mediumSymbolNames
-        
-        XCTAssertGreaterThan(hardSymbols.count, mediumSymbols.count)
     }
     
     func testEasySymbolsContainedWithinMultiplayerSymbols() {
@@ -55,11 +69,15 @@ final class SymbolsTests: XCTestCase {
         }
     }
     
-    func testMoreMediumSymbolsThanEasySymbols() {
-        let mediumSymbols = Symbols.shared.mediumSymbolNames
-        let easySymbols = Symbols.shared.easySymbolNames
+    func testHardSymbolsContainedWithinMultiplayerSymbols() {
+        let multiplayerSymbols = Symbols.shared.multiplayerSymbolNames
+        let hardSymbols = Symbols.shared.hardSymbolNames
         
-        XCTAssertGreaterThan(mediumSymbols.count, easySymbols.count)
+        for symbol in hardSymbols {
+            if !multiplayerSymbols.contains(symbol) {
+                XCTFail("Multiplayer symbols does not have \(symbol), but hard symbols does.")
+            }
+        }
     }
     
     func testGenerateRoundSymbols() {

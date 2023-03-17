@@ -21,39 +21,51 @@ final class PlayerTests: XCTestCase {
         XCTAssertEqual(actualCorrectAnswers, expectedCorrectAnswers)
     }
 
-    func testPlayerHasOneCorrectGuess() {
+    func testPlayerHasTwoPoints() {
         let player = Player(gkPlayer: GKPlayer(), guesses: [
             Guess(round: 0, answer: .correct("circle.fill"))
         ])
         
-        let actualCorrectAnswers = player.score
-        let expectedCorrectAnswers = 1
+        let actualScore = player.score
+        let expectedScore = 2
         
-        XCTAssertEqual(actualCorrectAnswers, expectedCorrectAnswers)
+        XCTAssertEqual(actualScore, expectedScore)
     }
     
-    func testPlayerHasTwoCorrectGuesses() {
+    func testPlayerHasThreePoints() {
+        let player = Player(gkPlayer: GKPlayer(), guesses: [
+            Guess(round: 0, answer: .correct("circle")),
+            Guess(round: 1, answer: .correct("square.fill"))
+        ])
+        
+        let actualScore = player.score
+        let expectedScore = 3
+        
+        XCTAssertEqual(actualScore, expectedScore)
+    }
+    
+    func testPlayerHasFourPoints() {
         let player = Player(gkPlayer: GKPlayer(), guesses: [
             Guess(round: 0, answer: .correct("circle.fill")),
             Guess(round: 1, answer: .correct("square.fill"))
         ])
         
-        let actualCorrectAnswers = player.score
-        let expectedCorrectAnswers = 2
+        let actualScore = player.score
+        let expectedScore = 4
         
-        XCTAssertEqual(actualCorrectAnswers, expectedCorrectAnswers)
+        XCTAssertEqual(actualScore, expectedScore)
     }
     
-    func testPlayerHasOneCorrectGuessAndSkipsAreNotCounted() {
+    func testPlayerHasTwoPointsAndSkipsAreNotCounted() {
         let player = Player(gkPlayer: GKPlayer(), guesses: [
             Guess(round: 0, answer: .correct("circle.fill")),
             Guess(round: 1, answer: .skip),
             Guess(round: 2, answer: .skip)
         ])
         
-        let actualCorrectAnswers = player.score
-        let expectedCorrectAnswers = 1
+        let actualScore = player.score
+        let expectedScore = 2
         
-        XCTAssertEqual(actualCorrectAnswers, expectedCorrectAnswers)
+        XCTAssertEqual(actualScore, expectedScore)
     }
 }

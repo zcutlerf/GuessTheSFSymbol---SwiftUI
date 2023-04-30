@@ -43,7 +43,7 @@ struct HowToPlayView: View {
                 
                 HStack {
                     VStack(alignment: .leading, spacing: 5.0) {
-                        Group {
+                        VStack(alignment: .leading, spacing: 5.0) {
                             Text("You know, those cute little symbols with catchy names like:")
                                 .font(.title3)
                                 .fontWeight(.medium)
@@ -58,7 +58,7 @@ struct HowToPlayView: View {
                         
                         Spacer(minLength: 10.0)
                         
-                        Group {
+                        VStack(alignment: .leading, spacing: 5.0) {
                             Text("Or, the classic:")
                                 .font(.title3)
                                 .fontWeight(.medium)
@@ -94,7 +94,7 @@ struct HowToPlayView: View {
                 
                 HStack {
                     VStack(alignment: .leading) {
-                        Group {
+                        VStack(alignment: .leading) {
                             Text("Single Player")
                                 .font(.title2)
                                 .fontWeight(.semibold)
@@ -105,7 +105,7 @@ struct HowToPlayView: View {
                         
                         Spacer(minLength: 10.0)
                         
-                        Group {
+                        VStack(alignment: .leading) {
                             Text("Multi Player")
                                 .font(.title2)
                                 .fontWeight(.semibold)

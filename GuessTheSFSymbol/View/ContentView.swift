@@ -25,6 +25,7 @@ struct ContentView: View {
                     .scaledToFit()
                     .padding(.horizontal)
                     .accessibilityRemoveTraits(.isImage)
+                    .accessibilityAddTraits(.isHeader)
                     .accessibilityLabel("S F Guess")
                 
                 symbolAnimationView

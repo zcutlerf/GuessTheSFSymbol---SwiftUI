@@ -34,6 +34,7 @@ struct LeaderboardView: View {
                 .fontWeight(.semibold)
                 .foregroundColor(.green)
                 .padding(.horizontal)
+                .accessibilityAddTraits(.isHeader)
             
             List {
                 ForEach(highScores, id: \.rank) { highScore in
@@ -55,6 +56,8 @@ struct LeaderboardView: View {
                             .font(.title3)
                             .fontWeight(.semibold)
                     }
+                    .accessibilityElement(children: .ignore)
+                    .accessibilityLabel("\(highScore.rank)th place: \(highScore.displayName) scored \(highScore.score).")
                 }
             }
         }

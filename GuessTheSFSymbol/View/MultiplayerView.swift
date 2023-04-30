@@ -122,6 +122,7 @@ extension MultiplayerView {
                     }
                 }
                 .padding(5)
+                .accessibilityLabel("\(showScores ? "You have a score of \(game.localPlayer!.score)." : "You")")
             }
             
             ForEach(game.opponents) { opponent in
@@ -145,6 +146,8 @@ extension MultiplayerView {
                     }
                 }
                 .padding(5)
+                .accessibilityElement(children: .ignore)
+                .accessibilityLabel("\(showScores ? "\(opponent.gkPlayer.displayName) has a score of \(opponent.score)." : opponent.gkPlayer.displayName)")
             }
         }
     }
@@ -161,6 +164,7 @@ extension MultiplayerView {
                     .padding(7)
                     .background(.regularMaterial)
                     .clipShape(Circle())
+                    .accessibilityLabel("Skipped this round.")
             case .correct:
                 Image(systemName: "checkmark.seal.fill")
                     .font(.system(size: 30.0))
@@ -168,6 +172,7 @@ extension MultiplayerView {
                     .padding(3)
                     .background(.regularMaterial)
                     .clipShape(Circle())
+                    .accessibilityLabel("Guessed correctly.")
             }
         }
     }
@@ -202,6 +207,7 @@ extension MultiplayerView {
             
             ProgressView(value: Double(game.round) / Double(game.numberOfRounds))
                 .progressViewStyle(.linear)
+                .accessibilityLabel("Round \(game.round) out of \(game.numberOfRounds).")
             
             if game.symbolsToGuess.indices.contains(game.round) {
                 SymbolToGuessView(symbolName: game.symbolsToGuess[game.round], guessText: $guessText, guessedCorrectly: game.guessedCorrectly)
@@ -222,6 +228,7 @@ extension MultiplayerView {
                     .font(.title)
                     .fontWeight(.medium)
                     .foregroundColor(.green)
+                    .accessibilityAddTraits(.isHeader)
                 
                 Text("Score: \(game.winningPlayers[0].score.description)")
                     .font(.title3)
@@ -231,6 +238,7 @@ extension MultiplayerView {
                     .font(.title)
                     .fontWeight(.medium)
                     .foregroundColor(.green)
+                    .accessibilityAddTraits(.isHeader)
                 
                 Text("Score: \(game.winningPlayers[0].score.description)")
                     .font(.title3)
@@ -251,6 +259,7 @@ extension MultiplayerView {
                                 .multilineTextAlignment(.center)
                         }
                         .padding()
+                        .accessibilityElement(children: .combine)
                     }
                 }
             }

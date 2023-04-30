@@ -25,6 +25,7 @@ struct ContentView: View {
                     .scaledToFit()
                     .padding(.horizontal)
                     .accessibilityRemoveTraits(.isImage)
+                    .accessibilityAddTraits(.isHeader)
                     .accessibilityLabel("S F Guess")
                 
                 symbolAnimationView
@@ -100,6 +101,7 @@ extension ContentView {
                 .font(.title.weight(.bold))
                 .foregroundColor(.blue)
         }
+        .accessibilityHidden(true)
     }
     
     private var leaderboardsToolbarItem: some ToolbarContent {

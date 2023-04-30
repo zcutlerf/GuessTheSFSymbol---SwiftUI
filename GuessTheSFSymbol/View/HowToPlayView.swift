@@ -10,16 +10,6 @@ import SwiftUI
 struct HowToPlayView: View {
     @Environment(\.dismiss) var dismiss
     
-    var attributedString: AttributedString {
-        var attributedString: AttributedString = ""
-        do {
-            attributedString = try AttributedString(markdown: "As an elite app developer, you must undoubtedly be familiar with [SF Symbols.](https://developer.apple.com/sf-symbols/)")
-        } catch {
-        attributedString = "As an elite app developer, you must undoubtedly be familiar with SF Symbols."
-        }
-        return attributedString
-    }
-    
     var body: some View {
         ScrollView {
             VStack {
@@ -39,6 +29,7 @@ struct HowToPlayView: View {
                     .font(.largeTitle)
                     .fontWeight(.medium)
                     .foregroundColor(.green)
+                    .accessibilityAddTraits(.isHeader)
                 
                 HStack {
                     Text(attributedString)
@@ -52,20 +43,29 @@ struct HowToPlayView: View {
                 
                 HStack {
                     VStack(alignment: .leading, spacing: 5.0) {
-                        Text("You know, those cute little symbols with catchy names like:")
-                            .font(.title3)
-                            .fontWeight(.medium)
-                        
-                        Label("tortoise", systemImage: "tortoise")
-                        Label("info.square", systemImage: "info.square")
-                        Label("heart.circle.fill", systemImage: "heart.circle.fill")
+                        VStack(alignment: .leading, spacing: 5.0) {
+                            Text("You know, those cute little symbols with catchy names like:")
+                                .font(.title3)
+                                .fontWeight(.medium)
+                            
+                            Label("tortoise", systemImage: "tortoise")
+                            Label("info.square", systemImage: "info.square")
+                                .accessibilityLabel("info dot square")
+                            Label("heart.circle.fill", systemImage: "heart.circle.fill")
+                            .accessibilityLabel("heart dot circle dot fill")
+                        }
+                        .accessibilityElement(children: .combine)
                         
                         Spacer(minLength: 10.0)
                         
-                        Text("Or, the classic:")
-                            .font(.title3)
-                            .fontWeight(.medium)
-                        Label("rectangle.and.arrow.up.right.and.arrow.down.left.slash", systemImage: "rectangle.and.arrow.up.right.and.arrow.down.left.slash")
+                        VStack(alignment: .leading, spacing: 5.0) {
+                            Text("Or, the classic:")
+                                .font(.title3)
+                                .fontWeight(.medium)
+                            Label("rectangle.and.arrow.up.right.and.arrow.down.left.slash", systemImage: "rectangle.and.arrow.up.right.and.arrow.down.left.slash")
+                                .accessibilityLabel("rectangle dot and dot arrow dot up dot right dot and dot arrow dot down dot left dot slash")
+                        }
+                        .accessibilityElement(children: .combine)
                     }
                     .imageScale(.medium)
                     
@@ -80,6 +80,7 @@ struct HowToPlayView: View {
                             .font(.title3)
                             .fontWeight(.medium)
                             .foregroundColor(.blue)
+                            .accessibilityHeading(.h2)
                         
                         Text("You'll earn more points for guessing longer symbol names.")
                             .font(.title3)
@@ -93,19 +94,25 @@ struct HowToPlayView: View {
                 
                 HStack {
                     VStack(alignment: .leading) {
-                        Text("Single Player")
-                            .font(.title2)
-                            .fontWeight(.semibold)
-                        
-                        Text("Race against the clock to guess as many symbol names as possible! See if you can beat those other speedy designers on the leaderboards.")
+                        VStack(alignment: .leading) {
+                            Text("Single Player")
+                                .font(.title2)
+                                .fontWeight(.semibold)
+                            
+                            Text("Race against the clock to guess as many symbol names as possible! See if you can beat those other speedy designers on the leaderboards.")
+                        }
+                        .accessibilityElement(children: .combine)
                         
                         Spacer(minLength: 10.0)
                         
-                        Text("Multi Player")
-                            .font(.title2)
-                            .fontWeight(.semibold)
-                        
-                        Text("Race against a frenemy to mash that keyboard and guess symbol names faster than they can type!")
+                        VStack(alignment: .leading) {
+                            Text("Multi Player")
+                                .font(.title2)
+                                .fontWeight(.semibold)
+                            
+                            Text("Race against a frenemy to mash that keyboard and guess symbol names faster than they can type!")
+                        }
+                        .accessibilityElement(children: .combine)
                     }
                     
                     Spacer()
@@ -118,7 +125,17 @@ struct HowToPlayView: View {
 }
 
 extension HowToPlayView {
-    var badSFIcon: some View {
+    private var attributedString: AttributedString {
+        var attributedString: AttributedString = ""
+        do {
+            attributedString = try AttributedString(markdown: "As an elite app developer, you must undoubtedly be familiar with [SF Symbols.](https://developer.apple.com/sf-symbols/)")
+        } catch {
+        attributedString = "As an elite app developer, you must undoubtedly be familiar with SF Symbols."
+        }
+        return attributedString
+    }
+    
+    private var badSFIcon: some View {
         VStack(spacing: 2.0) {
             HStack(spacing: 2.0) {
                 Image(systemName: "heart.fill")
@@ -145,6 +162,7 @@ extension HowToPlayView {
                 .foregroundColor(.black)
                 .shadow(radius: 5.0, x: 3.0, y: 3.0)
         }
+        .accessibilityHidden(true)
     }
 }
 

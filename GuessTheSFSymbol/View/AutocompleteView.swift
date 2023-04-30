@@ -49,6 +49,7 @@ struct AutocompleteView: View {
                             }
                             .padding(5)
                             .buttonStyle(.bordered)
+                            .accessibilityHint("Double-tap to add this symbol component to your guess.")
                         }
                     }
                 }

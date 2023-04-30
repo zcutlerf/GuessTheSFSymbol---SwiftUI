@@ -90,6 +90,7 @@ extension SingleplayerView {
                     .font(.largeTitle)
                     .fontWeight(.medium)
                     .foregroundColor(.green)
+                    .accessibilityAddTraits(.isHeader)
                 
                 Spacer()
             }
@@ -177,15 +178,23 @@ extension SingleplayerView {
             HStack {
                 Spacer()
                 
-                Image(systemName: "clock")
-                
-                Text(timeLeft.description)
+                HStack {
+                    Image(systemName: "clock")
+                    
+                    Text(timeLeft.description)
+                }
+                .accessibilityElement(children: .ignore)
+                .accessibilityLabel("\(timeLeft) second\(timeLeft == 1 ? "" : "s") left.")
                 
                 Spacer()
                 
-                Image(systemName: "chart.line.uptrend.xyaxis.circle")
-                
-                Text(game.score.description)
+                HStack {
+                    Image(systemName: "chart.line.uptrend.xyaxis.circle")
+                    
+                    Text(game.score.description)
+                }
+                .accessibilityElement(children: .ignore)
+                .accessibilityLabel("Score: \(game.score)")
                 
                 Spacer()
             }
@@ -221,6 +230,7 @@ extension SingleplayerView {
                 .font(.largeTitle)
                 .fontWeight(.medium)
                 .foregroundColor(.blue)
+                .accessibilityAddTraits(.isHeader)
             
             Text("Score: \(game.score)")
                 .font(.title)
@@ -252,6 +262,7 @@ extension SingleplayerView {
                         }
                     }
                     .buttonStyle(.borderedProminent)
+                    .accessibilityHint("Double-tap to view leaderboard.")
                 }
             case .failed:
                 Text("Leaderboard not available.")
@@ -271,6 +282,7 @@ extension SingleplayerView {
                             Image(systemName: correctGuess)
                                 .imageScale(.large)
                         }
+                        .accessibilityElement(children: .combine)
                     }
                 } header: {
                     Text("Symbols Guessed Correctly")
@@ -287,6 +299,7 @@ extension SingleplayerView {
                             Image(systemName: skippedSymbol)
                                 .imageScale(.large)
                         }
+                        .accessibilityElement(children: .combine)
                     }
                 } header: {
                     Text("Symbols Skipped")

@@ -5,16 +5,18 @@
 //  Created by Zoe Cutler on 3/10/23.
 //
 
+import SwiftUI
 import GameKit
 
 @MainActor class SingleplayerGame: ObservableObject {
     @Published var isPlayingGame = false
-    @Published var selectedDifficulty: Difficulty = .easy
-    @Published var timeLimit: TimeLimit = .oneMinute
+    @AppStorage("preferredSoloDifficulty") var selectedDifficulty: Difficulty = .easy
+    @AppStorage("preferredSoloTimeLimit") var timeLimit: TimeLimit = .oneMinute
     
     @Published var symbolToGuess = ""
     @Published var score = 0
     @Published var correctGuesses: [String] = []
+    @Published var skippedSymbols: [String] = []
     
     @Published var leaderboardStatus = LeaderboardStatus.notStarted
     @Published var highScores: [HighScore] = []
@@ -34,12 +36,17 @@ import GameKit
         
         if guessCleaned == correctAnswerCleaned {
             correctGuesses.append(symbolToGuess)
-            score += 1
+            score += numberOfComponents()
             generateNewSymbol()
             
             return true
         }
         
         return false
+    }
+    
+    func numberOfComponents() -> Int {
+        let components = symbolToGuess.components(separatedBy: ".")
+        return components.count
     }
 }

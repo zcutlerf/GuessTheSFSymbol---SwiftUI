@@ -32,14 +32,14 @@ struct LeaderboardView: View {
             Text("Best \(timeLimit.pickerLabel) on \(difficulty.rawValue.capitalized)")
                 .font(.title)
                 .fontWeight(.semibold)
-                .foregroundColor(.accentColor)
+                .foregroundColor(.green)
                 .padding(.horizontal)
             
             List {
                 ForEach(highScores, id: \.rank) { highScore in
                     HStack {
                         Image(systemName: "\(highScore.rank).circle")
-                            .foregroundColor(.accentColor)
+                            .foregroundColor(.green)
                             .font(.title2.weight(.semibold))
                         
                         if highScore.isNew {

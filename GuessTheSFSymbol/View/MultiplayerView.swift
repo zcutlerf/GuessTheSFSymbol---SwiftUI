@@ -108,6 +108,9 @@ extension MultiplayerView {
                         .scaledToFit()
                         .frame(maxWidth: 50.0, maxHeight: 50.0)
                         .clipShape(Circle())
+                        .overlay {
+                            playerRoundStateOverlay(for: game.localPlayer!)
+                        }
                     
                     if showScores {
                         Text(game.localPlayer!.score.description)
@@ -128,6 +131,9 @@ extension MultiplayerView {
                         .scaledToFit()
                         .frame(maxWidth: 50.0, maxHeight: 50.0)
                         .clipShape(Circle())
+                        .overlay {
+                            playerRoundStateOverlay(for: opponent)
+                        }
                     
                     if showScores {
                         Text(opponent.score.description)
@@ -139,6 +145,29 @@ extension MultiplayerView {
                     }
                 }
                 .padding(5)
+            }
+        }
+    }
+    
+    func playerRoundStateOverlay(for player: Player) -> some View {
+        Group {
+            switch player.roundState(for: game.round) {
+            case .notGuessed:
+                EmptyView()
+            case .skipped:
+                Image(systemName: "arrowshape.zigzag.forward")
+                    .font(.system(size: 30.0))
+                    .foregroundColor(.red)
+                    .padding(7)
+                    .background(.regularMaterial)
+                    .clipShape(Circle())
+            case .correct:
+                Image(systemName: "checkmark.seal.fill")
+                    .font(.system(size: 30.0))
+                    .foregroundColor(.green)
+                    .padding(3)
+                    .background(.regularMaterial)
+                    .clipShape(Circle())
             }
         }
     }
@@ -192,7 +221,7 @@ extension MultiplayerView {
                 Text("\(game.winningPlayers[0].gkPlayer.displayName) wins!")
                     .font(.title)
                     .fontWeight(.medium)
-                    .foregroundColor(.accentColor)
+                    .foregroundColor(.green)
                 
                 Text("Score: \(game.winningPlayers[0].score.description)")
                     .font(.title3)
@@ -201,7 +230,7 @@ extension MultiplayerView {
                 Text("It's a tie!")
                     .font(.title)
                     .fontWeight(.medium)
-                    .foregroundColor(.accentColor)
+                    .foregroundColor(.green)
                 
                 Text("Score: \(game.winningPlayers[0].score.description)")
                     .font(.title3)
@@ -218,7 +247,7 @@ extension MultiplayerView {
                             Text(player.gkPlayer.displayName)
                                 .font(.title3)
                                 .fontWeight(.medium)
-                                .foregroundColor(.accentColor)
+                                .foregroundColor(.green)
                                 .multilineTextAlignment(.center)
                         }
                         .padding()

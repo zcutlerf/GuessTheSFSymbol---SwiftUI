@@ -26,9 +26,12 @@ struct SymbolToGuessView: View {
             
             HStack {
                 if guessedCorrectly == nil {
-                    TextField("Guess.the.SF.Symbol", text: $guessText)
+                    TextField("guess.the.sf.symbol", text: $guessText)
                         .textFieldStyle(.roundedBorder)
                         .focused($textFieldIsFocused)
+                        .keyboardType(.URL)
+                        .autocorrectionDisabled(true)
+                        .textInputAutocapitalization(.never)
                 } else {
                     Text(symbolName)
                         .font(.headline)
@@ -41,7 +44,7 @@ struct SymbolToGuessView: View {
                             .foregroundColor(.green)
                             .imageScale(.large)
                     } else {
-                        Image(systemName: "xmark.seal")
+                        Image(systemName: "arrowshape.zigzag.forward")
                             .foregroundColor(.red)
                             .imageScale(.large)
                     }

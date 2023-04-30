@@ -27,7 +27,7 @@ import GameKit
         if withSampleData {
             localPlayer = Player(gkPlayer: GKPlayer())
             opponents = [Player(gkPlayer: GKPlayer())]
-            symbolsToGuess = Symbols.shared.generateRoundSymbols(for: numberOfRounds)
+            symbolsToGuess = Symbols.shared.generateMultiplayerRoundSymbols(for: numberOfRounds)
         }
     }
     
@@ -123,7 +123,7 @@ import GameKit
         playersAlphabetical.sort(by: { $0.gkPlayer.displayName > $1.gkPlayer.displayName })
         
         if localPlayer.gkPlayer.gamePlayerID == playersAlphabetical.first!.gkPlayer.gamePlayerID {
-            symbolsToGuess = Symbols.shared.generateRoundSymbols(for: numberOfRounds)
+            symbolsToGuess = Symbols.shared.generateMultiplayerRoundSymbols(for: numberOfRounds)
             
             sendSymbolsToGuess()
             

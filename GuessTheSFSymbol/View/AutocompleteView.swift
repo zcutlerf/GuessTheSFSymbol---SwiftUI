@@ -45,7 +45,7 @@ struct AutocompleteView: View {
                             Button {
                                 autocomplete(with: component)
                             } label: {
-                                Text(component)
+                                Text(component + ".")
                             }
                             .padding(5)
                             .buttonStyle(.bordered)

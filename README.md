@@ -24,6 +24,8 @@ This game has multiple modes.
 * 2-4 players compete to guess symbols faster than their opponents.
 * Players can automatch or invite Game Center friends.
 
+---
+
 ### Technologies Used
 * **SwiftUI**, using **MVVM** with a **Service** layer
 * Some fun Swift stuff

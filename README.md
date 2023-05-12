@@ -1,8 +1,8 @@
 #  Guess the SF Symbol (SFGuess)
 ## This is the repository for a game where designers and developers can compete to guess the names of SF Symbols as fast as possible.
 
-## Now available on TestFlight:
-https://testflight.apple.com/join/TkYhrWS6
+## Now available on the App Store:
+https://apps.apple.com/us/app/guess-the-sf-symbol/id6445957994
 
 Some of these symbol names are easy, and some are hard. Some examples:
 * tortoise
